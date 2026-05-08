@@ -266,6 +266,25 @@
     margin-left: 1px;
   }
   html[data-theme="slate"] .hero__stat-total { color: #a0a4ad; }
+  /* Trophy state: when all stats max out, the digits adopt the moving Claude gradient */
+  .hero__stat-value [data-stat].is-complete {
+    background: linear-gradient(90deg,
+      #ff4500 0%,
+      #ff2e6e 17%,
+      #b21e8a 33%,
+      #7f3399 50%,
+      #1a1ad1 67%,
+      #7f3399 83%,
+      #ff4500 100%);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: claude-shimmer 9s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero__stat-value [data-stat].is-complete { animation: none; }
+  }
   @media (max-width: 760px) {
     .hero { padding: 56px 0 44px; }
     .hero__stats { grid-template-columns: repeat(2, 1fr); }
@@ -1686,6 +1705,10 @@
       if (statSteps) statSteps.textContent = String(done);
       if (statPhases) statPhases.textContent = String(phasesDone(done));
       if (statCerts) statCerts.textContent = String(certsDone(done));
+      var trophy = done >= TOTAL;
+      [statSteps, statPhases, statCerts].forEach(function (el) {
+        if (el) el.classList.toggle('is-complete', trophy);
+      });
     }
 
     var done = read();
