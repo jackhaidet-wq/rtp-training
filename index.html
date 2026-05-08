@@ -63,6 +63,21 @@
     .bg-smoke { animation: none; }
   }
 
+  /* ---------- Text legibility halo (lifts free-standing text above smoke) ---------- */
+  .topbar, .topbar__brand, .topbar__co, .topbar__meta,
+  .hero__eyebrow, .hero__lede, .hero__stat-label, .hero__stat-value,
+  .phase__title, .phase__sub,
+  .foot {
+    text-shadow: 0 0 18px rgba(249, 249, 249, 0.9), 0 1px 0 rgba(249, 249, 249, 0.7);
+  }
+  .hero__title {
+    text-shadow: 0 0 24px rgba(249, 249, 249, 0.95), 0 1px 0 rgba(249, 249, 249, 0.7);
+  }
+  /* Gradient-clipped text needs filter (text-shadow can't paint behind transparent fill) */
+  .hero__title em, .phase__num {
+    filter: drop-shadow(0 2px 4px rgba(249, 249, 249, 0.75)) drop-shadow(0 0 12px rgba(249, 249, 249, 0.5));
+  }
+
   /* ---------- Page chrome ---------- */
   .page {
     position: relative;
