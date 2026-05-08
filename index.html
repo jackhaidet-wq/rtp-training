@@ -259,6 +259,13 @@
     font-variant-numeric: tabular-nums;
     letter-spacing: -0.01em;
   }
+  .hero__stat-total {
+    font-weight: 400;
+    font-size: 0.62em;
+    color: var(--ar-ink-5);
+    margin-left: 1px;
+  }
+  html[data-theme="slate"] .hero__stat-total { color: #a0a4ad; }
   @media (max-width: 760px) {
     .hero { padding: 56px 0 44px; }
     .hero__stats { grid-template-columns: repeat(2, 1fr); }
@@ -1203,15 +1210,15 @@
     <div class="hero__stats">
       <div class="hero__stat">
         <div class="hero__stat-label">Steps</div>
-        <div class="hero__stat-value">11</div>
+        <div class="hero__stat-value"><span data-stat="steps">0</span><span class="hero__stat-total">/11</span></div>
       </div>
       <div class="hero__stat">
         <div class="hero__stat-label">Phases</div>
-        <div class="hero__stat-value">04</div>
+        <div class="hero__stat-value"><span data-stat="phases">0</span><span class="hero__stat-total">/4</span></div>
       </div>
       <div class="hero__stat">
         <div class="hero__stat-label">Certificates</div>
-        <div class="hero__stat-value">02</div>
+        <div class="hero__stat-value"><span data-stat="certs">0</span><span class="hero__stat-total">/2</span></div>
       </div>
     </div>
   </section>
@@ -1616,7 +1623,8 @@
   })();
 
   (function () {
-    var TOTAL = 10;
+    var STEPS_BEFORE_SUBMIT = 10;
+    var TOTAL = 11; // 10 step cards + 1 submit
     var CHECK_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
     var steps = Array.prototype.slice.call(document.querySelectorAll('article.step'));
     if (!steps.length) return;
@@ -1636,6 +1644,11 @@
       if (prev && prev.dataset.step) sub.dataset.substepOf = prev.dataset.step;
     });
     var submit = document.querySelector('.submit');
+    if (submit) submit.dataset.step = '11';
+
+    var statSteps = document.querySelector('[data-stat="steps"]');
+    var statPhases = document.querySelector('[data-stat="phases"]');
+    var statCerts = document.querySelector('[data-stat="certs"]');
 
     function read() {
       try {
@@ -1647,6 +1660,14 @@
     function write(n) {
       try { localStorage.setItem('rtp-progress', String(n)); } catch (e) {}
     }
+    function phasesDone(d) {
+      // Phase 01: steps 1-2, Phase 02: 3-4, Phase 03: 5-6, Phase 04: 7-10
+      return (d >= 2 ? 1 : 0) + (d >= 4 ? 1 : 0) + (d >= 6 ? 1 : 0) + (d >= 10 ? 1 : 0);
+    }
+    function certsDone(d) {
+      // Cert 1 at step 6 (Claude 101), Cert 2 at step 9 (Intro to Cowork)
+      return (d >= 6 ? 1 : 0) + (d >= 9 ? 1 : 0);
+    }
     function render(done) {
       var active = done + 1;
       steps.forEach(function (s) {
@@ -1657,7 +1678,14 @@
         var n = parseInt(sub.dataset.substepOf, 10);
         sub.dataset.state = (n <= done || n === active) ? 'active' : 'locked';
       });
-      if (submit) submit.dataset.state = done >= TOTAL ? 'active' : 'locked';
+      if (submit) {
+        if (done >= TOTAL) submit.dataset.state = 'done';
+        else if (done >= STEPS_BEFORE_SUBMIT) submit.dataset.state = 'active';
+        else submit.dataset.state = 'locked';
+      }
+      if (statSteps) statSteps.textContent = String(done);
+      if (statPhases) statPhases.textContent = String(phasesDone(done));
+      if (statCerts) statCerts.textContent = String(certsDone(done));
     }
 
     var done = read();
@@ -1678,13 +1706,22 @@
         }
         return;
       }
-      var cta = e.target.closest('.step__cta');
-      if (cta) {
-        var step = cta.closest('.step');
-        if (!step) return;
-        if (step.dataset.state === 'active') {
-          var num = parseInt(step.dataset.step, 10);
+      var stepCta = e.target.closest('.step__cta');
+      if (stepCta) {
+        var stepEl = stepCta.closest('.step');
+        if (!stepEl) return;
+        if (stepEl.dataset.state === 'active') {
+          var num = parseInt(stepEl.dataset.step, 10);
           done = num;
+          write(done);
+          render(done);
+        }
+        return;
+      }
+      var submitCta = e.target.closest('.submit__cta');
+      if (submitCta) {
+        if (submit && submit.dataset.state === 'active') {
+          done = TOTAL;
           write(done);
           render(done);
         }
