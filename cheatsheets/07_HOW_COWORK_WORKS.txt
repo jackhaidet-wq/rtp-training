@@ -1,0 +1,56 @@
+================================================================
+CHEAT SHEET 07 - HOW COWORK WORKS ON YOUR MACHINE
+Track 2 - Governance / Lesson 2.2
+================================================================
+
+THE THREE THINGS COWORK USES
+
+FOLDER
+  Cowork can only read and write inside the dedicated
+  WORKING FOLDER you give it.
+    - Move a file IN to give Cowork access.
+    - Move a file OUT to take access away.
+    - Cowork cannot reach the rest of your drive unless
+      you move files in.
+
+BROWSER
+  Cowork browses through your Chrome session, with your
+  credentials.
+    - Same access you have in Chrome, no more.
+    - Stops at the blocked-sites list IT manages.
+    - Logs every page fetch as a tool call.
+
+TOOL CALLS
+  Every action Cowork takes is a discrete LOGGED EVENT.
+    - File read, file write, web fetch, connector call.
+    - The exhaust lands in the admin console.
+    - Resurgens admins can review what ran and when.
+
+----------------------------------------------------------------
+THE CONTRAST WITH CHAT
+----------------------------------------------------------------
+  Claude CHAT web access goes through Anthropic's servers.
+  COWORK tool calls go through:
+    - YOUR browser
+    - YOUR file system
+    - YOUR credentials
+  ...with full event logs in YOUR admin console.
+
+----------------------------------------------------------------
+WHAT THIS IMPLIES FOR YOU
+----------------------------------------------------------------
+  - You control what Cowork sees by what you put in the folder.
+  - You can pull access by moving the file out.
+  - Your chrome bookmarks, passwords, and other tabs are
+    NOT auto-shared with Cowork.
+  - If something goes wrong, the admin console has receipts.
+
+----------------------------------------------------------------
+WORKING-FOLDER HABITS
+----------------------------------------------------------------
+  [ ] One project = one folder
+  [ ] Don't dump entire deal-rooms into the folder
+  [ ] Move sensitive files OUT when scope shifts
+  [ ] Treat the folder like a clean desk - clear it when done
+
+================================================================

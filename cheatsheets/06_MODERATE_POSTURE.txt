@@ -1,0 +1,64 @@
+================================================================
+CHEAT SHEET 06 - THE MODERATE POSTURE
+Track 2 - Governance / Lesson 2.1
+================================================================
+
+WHAT IT IS
+  The recommended starting posture across all capability
+  settings, agreed during the Stage 2 risk profile review.
+  Sits between "Restricted" (overly cautious) and "Full"
+  (too open) for a mid-market PE firm.
+
+WHY MODERATE
+  - Restricted strangles the actual value.
+  - Full pushes residual risks past the line we want.
+  - Moderate captures most of the upside with controls
+    that match how Resurgens already runs.
+
+WHAT'S TURNED ON
+  Web search ............................. ON
+  Code execution ......................... ON
+  Network egress ......................... ON
+    (package managers allowlisted - the primary delta vs.
+     the prior IT configuration)
+  Cowork ................................. ON for all users
+  Connector tool approval ................ PER-USE APPROVAL
+  Office Agents, Plugins, Skills ......... per posture
+  User-created skills .................... ON
+  Third-party plugins .................... case-by-case review
+  Managed settings override .............. ON firm-wide
+
+WHAT'S NOT TURNED ON
+  Cowork dispatch ........................ OFF
+  Bypass Permissions (Code) .............. OFF
+  Auto Permissions (Code) ................ OFF
+  Code in Desktop ........................ ON, opt-in only
+                                           (gated behind
+                                            Phase 2 training)
+
+PRIVACY POSTURE
+  Data retention ......................... 30-day Anthropic default
+  User Feedback .......................... OFF
+  Public project controls ................ Resurgens posture
+
+SPEND CONTROLS
+  Per-user caps .......................... TBD starting range
+                                           (revisit after 30 days)
+  Org-wide monthly limit ................. CONFIGURED
+  Multi-tier alerts ...................... CONFIGURED
+
+OBSERVABILITY
+  OTel endpoint .......................... Resurgens configures;
+                                           AnswerRocket documents
+                                           the integration pattern
+
+----------------------------------------------------------------
+WHAT MODERATE MEANS FOR YOU
+----------------------------------------------------------------
+  - You can use Cowork for daily work today.
+  - Connector calls show you an approval before they run.
+  - Your prompts are not used to train models.
+  - Spend caps protect you from a runaway agent loop.
+  - Settings are managed centrally - no need to configure.
+
+================================================================

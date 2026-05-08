@@ -1,0 +1,71 @@
+================================================================
+CHEAT SHEET 13 - SCHEDULED TASKS
+Track 3 - Cowork Deep Dive / Lesson 3.2
+================================================================
+
+WHAT A SCHEDULED TASK IS
+  A workflow you set up once and Cowork runs on a cadence
+  you choose - daily, weekly, monthly, or custom. Common at
+  Resurgens: weekly digest pulls, Monday-morning prep,
+  Friday pipeline summaries.
+
+WHEN A SCHEDULED TASK MAKES SENSE
+  - You run the same workflow on the same cadence
+  - The output is mostly the same shape every time
+  - You'd benefit from it landing without you having to
+    think about it
+  - Inputs are stable (a folder, a connector, a query)
+
+EXAMPLES THAT FIT
+  - Friday afternoon pipeline summary from DealCloud, posted
+    as an Outlook draft
+  - Monday LP-prep brief pulling from the working folder
+  - Daily news monitor on a target sector
+  - Weekly portco operating-review note prep
+
+EXAMPLES THAT DON'T FIT
+  - Anything triggered by an unpredictable event
+  - One-off requests
+  - Anything that needs human judgment between steps every
+    time
+
+----------------------------------------------------------------
+THE CONTROLS YOU CARE ABOUT
+----------------------------------------------------------------
+  PER-USER COST CAP
+    When you create a scheduled task, Cowork shows you the
+    cap. Confirm it. If a task tries to exceed it, the task
+    stops and alerts you.
+
+  MULTI-TIER ALERTS
+    Set thresholds (50% / 80% / 100% of cap). You get
+    notified before it stops.
+
+  AUDIT REGISTRY
+    Resurgens admin console maintains a registry of every
+    active scheduled task. 30-day review cycle - stale or
+    unused tasks get cleaned up.
+
+----------------------------------------------------------------
+SCHEDULED TASK CREATION CHECKLIST
+----------------------------------------------------------------
+  [ ] Workflow runs cleanly as a one-off first
+  [ ] Inputs are stable (folder / connector / query)
+  [ ] Output destination is set (Outlook draft? Slack? File?)
+  [ ] Cost cap confirmed
+  [ ] Alert thresholds confirmed
+  [ ] Output is reviewed by you before action
+        (no auto-send, no auto-share)
+  [ ] Owner is YOU - if you leave the team, the task should
+        be transferred or canceled
+
+----------------------------------------------------------------
+WHAT TO REVIEW MONTHLY
+----------------------------------------------------------------
+  - Are my scheduled tasks still useful?
+  - Has my cost cap been hit? Why?
+  - Did any task produce output I didn't read?
+    -> Cancel it.
+  - Did any task fail repeatedly? -> Fix or cancel it.
+
+================================================================

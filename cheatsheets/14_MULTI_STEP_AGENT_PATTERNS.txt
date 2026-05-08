@@ -1,0 +1,74 @@
+================================================================
+CHEAT SHEET 14 - MULTI-STEP AGENT PATTERNS
+Track 3 - Cowork Deep Dive / Lesson 3.3
+================================================================
+
+THE PATTERN
+  ORIENT  ->  PLAN  ->  ACT  ->  CHECK  ->  REPORT
+
+ORIENT
+  Claude reads the inputs you've given it and figures out
+  what it actually has and what it's missing.
+    Example: "Read everything in the working folder.
+              Tell me what you have, what you're missing,
+              and what you'd ask before starting."
+
+PLAN
+  Claude proposes the steps before doing any of them.
+    Example: "Write the plan as a numbered list. Don't
+              execute yet. Tell me which steps you're
+              uncertain about."
+
+ACT
+  Claude executes one step at a time, with a tool call
+  per step, with you approving connector calls per use.
+
+CHECK
+  After each step (or at the end), Claude reviews its own
+  work for errors, missing inputs, or unverified numbers.
+    Example: "Re-read your output. Flag anything that
+              depends on a number you didn't cite or a
+              fact you couldn't verify."
+
+REPORT
+  Claude returns a summary of what it did, what it found,
+  what it could NOT do, and what it skipped.
+
+----------------------------------------------------------------
+WORKED EXAMPLE - CASCADE HOLDINGS NEWS MONITOR
+----------------------------------------------------------------
+  PROMPT:
+    "You are running a multi-step research task on Cascade
+     Holdings. Workflow:
+       1. Orient: list what's in the working folder.
+       2. Plan: outline a 5-step research workflow to
+          produce a 1-page sector-news brief on Cascade.
+       3. Act: execute step by step. Stop after each step
+          and tell me what you did and what's next.
+       4. Check: at the end, re-read and flag anything
+          unverified.
+       5. Report: produce the 1-page brief with citations."
+
+----------------------------------------------------------------
+WHERE MULTI-STEP BREAKS - BE HONEST ABOUT THIS
+----------------------------------------------------------------
+  - LONG-RUNNING COST. Many steps = many tool calls = real
+    spend. The cost cap exists for a reason.
+  - RECOVERY FROM A BAD STEP. If step 3 produced nonsense,
+    steps 4 and 5 are built on sand. CHECK at every step.
+  - HALLUCINATED TOOL CALLS. Rare, but Claude can claim it
+    called a tool it didn't. The admin tool-call log is
+    the source of truth.
+  - DRIFT. The longer the chain, the more the original
+    intent gets watered down. Keep prompts tight.
+
+----------------------------------------------------------------
+RULES OF THUMB
+----------------------------------------------------------------
+  - 3-5 steps is the sweet spot for most workflows.
+  - >7 steps -> consider breaking into a Skill or Scheduled
+    Task.
+  - Always insert a CHECK before any irreversible step
+    (send, post, write to a system).
+
+================================================================

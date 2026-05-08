@@ -1,0 +1,50 @@
+================================================================
+CHEAT SHEET 02 - CHAT vs. COWORK vs. CODE
+Track 1 - AI 101 / Lesson 1.2
+================================================================
+
+ONE-LINE RULE
+  If it lives in Office or a folder -> COWORK
+  If it lives in a code repo --------> CODE (Phase 2)
+  Quick questions -------------------> CHAT
+
+CHAT  (lowest risk, fastest)
+  Use when:
+    - Quick questions, brainstorming, drafting
+    - Summarizing pasted text
+    - Explaining a concept
+  Doesn't have:
+    - Access to your files
+    - Access to your Office apps
+    - Access to your firm connectors
+
+COWORK  (your daily driver)
+  Use when:
+    - Multi-step work with files in a working folder
+    - Drafting in Word, modeling in Excel, building in PPT
+    - Email drafting through O365 (with approval on send)
+    - Pulling from connectors (Verity, DealCloud, Slack)
+  Has:
+    - Folder-scoped file access
+    - Browser via your Chrome session
+    - Logged tool calls in the admin console
+
+CODE  (Phase 2, opt-in)
+  Use when:
+    - Writing / reviewing / debugging code in a terminal
+    - GitHub-based, PR-gated workflows
+  Held for Phase 2 - mandatory training before access.
+
+QUICK-PICK GUIDE
+  "Help me brainstorm 10 angles on this thesis"  -> Chat
+  "Summarize this earnings call transcript"      -> Chat
+  "Draft an LP email pulling from this folder"   -> Cowork
+  "Update the Cascade model in Excel"            -> Cowork
+  "Refactor this Python script"                  -> Code (P2)
+
+WHY IT MATTERS
+  Different surfaces have different access, different risks,
+  and different audit trails. Picking the right one keeps you
+  fast AND inside the moderate posture.
+
+================================================================

@@ -1,0 +1,55 @@
+================================================================
+CHEAT SHEET 11 - YOUR CLAUDE.MD BASELINE
+Track 2 - Governance / Lesson 2.6
+================================================================
+
+WHAT CLAUDE.MD IS
+  A firm-wide instruction file Claude reads at the START of
+  every session. It's how every Resurgens employee gets the
+  same starting Claude, with the same rules.
+
+WHAT'S IN THE RESURGENS BASELINE
+  - Firm context (who Resurgens is, the kind of work, tone)
+  - The four-bright-line list (MNPI / deal terms / LP data /
+    portco financials)
+  - Output-style preferences (firm-format memos, brief tone,
+    citations expected)
+  - The "if you're about to do something irreversible, ask
+    first" rule
+  - Connector overview and approval expectations
+
+WHO MAINTAINS IT
+  - Will and Henry maintain the baseline
+  - AnswerRocket helps version it during Phase 1
+  - Resurgens IT deploys it to your machine
+
+WHAT YOU DON'T DO
+  - You DON'T write the firm baseline yourself.
+  - You DON'T edit the baseline that ships to your machine.
+
+WHAT YOU CAN DO
+  - You CAN add a PERSONAL EXTENSION for your own preferences:
+      * Your role and team
+      * Your favorite output formats
+      * Project-specific shortcuts you reuse
+  - Personal extensions never override the firm baseline -
+    they only add to it.
+
+----------------------------------------------------------------
+HOW TO USE IT WELL
+----------------------------------------------------------------
+  - On Day 1 of training, confirm claude.md is in place.
+  - When Claude does something off-tone, check the baseline
+    is still loading.
+  - When the firm changes rules (new connector, new bright
+    line), Will or Henry updates the baseline; everyone gets
+    it on next session.
+
+----------------------------------------------------------------
+WHEN TO TELL WILL OR HENRY
+----------------------------------------------------------------
+  - Claude doesn't seem to know about a firm-wide rule
+  - Claude is producing outputs in the wrong format
+  - You spot a gap in the baseline that the team needs
+
+================================================================

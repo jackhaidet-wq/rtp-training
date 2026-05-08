@@ -1,0 +1,76 @@
+================================================================
+CHEAT SHEET 10 - CONNECTOR RULES
+Track 2 - Governance / Lesson 2.5
+================================================================
+
+THE THREE-WORD RULE
+  Read. Write. Approval.
+
+WHAT EACH MEANS
+  READ      Claude can pull data from the connector.
+  WRITE     Claude can change something in the connector.
+  APPROVAL  Claude shows you the action and waits before
+            executing.
+
+PHASE 1 CONNECTOR TABLE (status as of 5/5/26)
+
+  VERITY            Live (5/1)        Read/write
+                    (firm notes, MCP)
+                    Use for: drafting research notes,
+                    summarizing transcripts, sector-thesis
+                    updates.
+
+  PITCHBOOK         Live (5/1)        Read
+                    (market data)
+                    Use for: pulling private-company
+                    market data inside Claude.
+
+  DEALCLOUD         In process        TBD per IT plan
+                    (CRM)
+                    Setup may continue into days following
+                    training.
+
+  O365 / M365       In process        Read/write WITH APPROVAL
+                    (email, cal,      No auto-send.
+                     Office)          Excel/PPT/Word plugins.
+                    Email drafts open in your inbox for
+                    one-click send. Claude never sends
+                    without you.
+
+  SLACK             Turned on 5/5     Read/write
+                    (Claude in        Same scope as your
+                     Slack)            account.
+
+  GRATA             In process        Read
+                    (market data,     IT validating vendor
+                     MCP)             trust-center docs.
+
+  EZEKIA            In process        Read
+                    (Talent CRM,      Used by PortOps Talent
+                     MCP)             SME.
+
+  BOX               Not started       Held for future phase
+                    (file system)     Indexing + semantic
+                                      layer required first.
+
+----------------------------------------------------------------
+THE APPROVAL PATTERN
+----------------------------------------------------------------
+  When Claude wants to call a connector tool, you see:
+    - WHICH connector
+    - WHICH tool / action
+    - WHAT data it would read or write
+    - APPROVE / DENY
+
+  Default to denying anything that surprises you.
+
+----------------------------------------------------------------
+ADDING A CONNECTOR
+----------------------------------------------------------------
+  Want to add a connector? Send the request to Will or Henry.
+  They'll run it through the AnswerRocket-delivered
+  evaluation framework.
+
+  DON'T add connectors yourself.
+
+================================================================

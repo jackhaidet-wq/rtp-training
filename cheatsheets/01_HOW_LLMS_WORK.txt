@@ -1,0 +1,37 @@
+================================================================
+CHEAT SHEET 01 - HOW LLMs ACTUALLY WORK
+Track 1 - AI 101 / Lesson 1.1
+================================================================
+
+THE 30-SECOND VERSION
+  An LLM is a next-token predictor trained on a snapshot of
+  public text. It is NOT a search engine and it does NOT know
+  anything new unless you give it tools (web, files, connectors).
+
+WHAT THIS MEANS FOR YOU
+  - Claude doesn't "look things up" by default.
+  - Claude can confabulate - confidently produce false specifics.
+  - Citations Claude produces are pointers, not proof. Verify.
+  - Knowledge cutoff matters. Anything recent needs web/connector.
+
+THE RESURGENS POSTURE
+  - Anthropic 30-day retention default.
+  - User Feedback OFF org-wide.
+  - Your prompts are NOT used to train models.
+
+THE HONEST ANALOGY
+  Claude is the best junior analyst you've ever hired who has
+  never been to your office and reads everything you give it.
+  Treat it accordingly.
+
+WHAT TO DO ON EVERY ANSWER
+  1. Ask: did Claude have the data it needed, or did it guess?
+  2. Cross-check any number Claude produced.
+  3. If a citation matters, click through and confirm.
+  4. If you're going to act on it, name your assumptions.
+
+REFLECTION QUESTIONS
+  - What did Claude NOT know about the firm before you told it?
+  - Where could a confabulation cost the firm money?
+
+================================================================

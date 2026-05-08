@@ -1,0 +1,72 @@
+================================================================
+CHEAT SHEET 12 - SKILLS
+Track 3 - Cowork Deep Dive / Lesson 3.1
+================================================================
+
+WHAT A SKILL IS
+  A packaged capability - code, instructions, data - that
+  Claude can invoke. Skills extend Claude with reusable
+  workflows your firm or team has standardized on.
+
+THE FOUR BUILT-IN SKILLS WITH COWORK
+  - Excel skill (read/edit spreadsheets, build models)
+  - Word skill (create docs, edits, find/replace)
+  - PowerPoint skill (create decks, edit slides)
+  - PDF skill (extract text/tables, fill forms, merge)
+
+THE TWO SKILLS THAT SHIP WITH RESURGENS AT DEPLOY
+
+  EARNINGS TRANSCRIPT SUMMARIZER
+    Built by AnswerRocket. Available to everyone.
+    Inputs:  raw transcript text or PDF
+    Outputs: thesis-relevant quotes /
+             3-bullet summary /
+             surprises vs. consensus /
+             90-second call-prep brief
+
+  DEAL SCREEN DRAFTER
+    Built by AnswerRocket with input from the deal team
+    (Danny Carpenter / Seth Green / Raj Parikh).
+    Available to the Investment Team at deploy.
+    Inputs:  CIM excerpt
+    Outputs: Resurgens 1-page deal screen format
+             - Company snapshot
+             - Financials at a glance
+             - Deal thesis
+             - Top three risks
+             - Open questions
+             - "Should we IC this?"
+
+----------------------------------------------------------------
+HOW TO INSTALL A USER-CREATED SKILL
+----------------------------------------------------------------
+  1. Open the Skills sidebar in Cowork
+  2. Paste the skill ID
+  3. Confirm permissions
+  4. Skill is available in your sessions
+
+----------------------------------------------------------------
+HOW TO SHARE A SKILL WITH THE FIRM
+----------------------------------------------------------------
+  1. Export the skill from your Skills sidebar
+  2. Send to Will or Henry
+  3. AnswerRocket reviews
+  4. If approved, added to the firm baseline so everyone
+     gets it
+
+----------------------------------------------------------------
+WHEN TO BUILD A SKILL VS. JUST PROMPT
+----------------------------------------------------------------
+  Build a skill when:
+    - You repeat the same multi-step workflow weekly+
+    - The output format is firm-standard (memo / screen /
+      deal log)
+    - More than one teammate would use it
+    - The prompt is long enough that copy-pasting is friction
+
+  Just prompt when:
+    - It's a one-off
+    - The format is bespoke to this single task
+    - You're still figuring out what "good" looks like
+
+================================================================

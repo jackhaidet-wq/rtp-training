@@ -1,0 +1,76 @@
+================================================================
+CHEAT SHEET 08 - WHAT STAYS OUT OF CLAUDE
+Track 2 - Governance / Lesson 2.3 (THE BRIGHT LINE)
+================================================================
+
+FOUR THINGS NEVER GO IN CLAUDE
+
+  1. MATERIAL NON-PUBLIC INFORMATION (MNPI)
+     Anything you wouldn't email to a competitor.
+     Earnings before release. M&A discussions before
+     announcement.
+
+  2. DEAL TERMS
+     LOIs, term sheets, definitive agreement language for
+     any active deal.
+
+  3. LP DATA
+     Names, allocations, capital call schedules, side
+     letters - anything tied to a specific LP.
+
+  4. PORTFOLIO COMPANY FINANCIALS
+     Revenue, EBITDA, headcount detail, customer lists for
+     any portfolio company.
+
+If you're unsure: ASK WILL OR HENRY before you paste.
+There is no penalty for asking.
+There is a real penalty for guessing wrong.
+
+----------------------------------------------------------------
+SPOT-THE-VIOLATION - 3 SCENARIOS
+----------------------------------------------------------------
+
+SCENARIO 1
+  You're prepping a deal screen and want Claude to compare
+  your target's revenue trajectory to a portfolio company
+  you already own. You paste the portco's last four quarters
+  of revenue (a public-ish figure from a press release) into
+  Cowork.
+
+  ANSWER: NOT OK.
+  Even revenue figures from a press release become PORTCO
+  FINANCIALS the moment they're combined with your firm's
+  analysis. Use Verity for portco research and keep raw
+  financials out of the working folder.
+
+SCENARIO 2
+  An MD forwards you an unsigned LOI from a sell-side banker
+  with the line "help me think through the price." You drop
+  the PDF into your Cowork working folder.
+
+  ANSWER: NOT OK.
+  An LOI - signed or not - is a deal term. Bright line.
+  Summarize the open price questions yourself first; ask
+  Claude to react to your summary; the LOI never touches
+  the working folder.
+
+SCENARIO 3
+  You're researching a target. You drop the target's public
+  S-1 into Cowork and ask Claude to summarize the customer-
+  concentration risk.
+
+  ANSWER: OK.
+  The S-1 is publicly filed. No MNPI, no deal terms, no LP
+  data, no portco financials. This is exactly what Cowork
+  is for.
+
+----------------------------------------------------------------
+THE ONE-QUESTION TEST BEFORE YOU PASTE
+----------------------------------------------------------------
+  Does this content - on its own or combined with what's
+  already in the chat - reveal MNPI, a deal term, an LP, or
+  a portco financial?
+
+  If yes, or if you can't tell -> DON'T paste. Ask first.
+
+================================================================

@@ -1,0 +1,51 @@
+================================================================
+CHEAT SHEET 04 - PROJECTS AND UPLOADED FILES
+Track 1 - AI 101 / Lesson 1.4
+================================================================
+
+WHAT A PROJECT IS
+  A persistent context where Claude remembers your files,
+  custom instructions, and prior chats across sessions.
+
+PROJECT vs. ONE-OFF CHAT
+  Use a PROJECT when:
+    - Same set of files matters across many chats
+    - You want a stable persona ("you are a deal analyst...")
+    - You want chat history to compound on the topic
+
+  Use a ONE-OFF CHAT when:
+    - Quick question, no file context needed
+    - Drop-in document for a single summarize-then-toss task
+
+THE BIG RULE FOR PROJECT FILES
+  Project files PERSIST. They are not destroyed at the end
+  of the session. Choose carefully what you put in.
+
+WHAT TO PUT IN A PROJECT
+  - Public, non-sensitive reference docs
+  - Templates and firm-format examples
+  - Public filings (S-1, 10-K, press releases)
+  - Sector primers, glossaries, internal standards
+
+WHAT NOT TO PUT IN A PROJECT
+  - MNPI
+  - Deal terms (LOIs, term sheets, definitive agreements)
+  - LP data
+  - Portfolio company financials
+  - Anything covered by an NDA
+
+WHEN TO USE THE WORKING FOLDER INSTEAD
+  Cowork's working folder is for the SESSION's documents -
+  files Claude needs to read or write right now. The folder
+  is yours; you can move files in and out as scope shifts.
+  Same data rules as projects apply.
+
+----------------------------------------------------------------
+PROJECT HYGIENE - 4 HABITS
+----------------------------------------------------------------
+  [ ] Name projects so future-you knows what they are
+  [ ] Pin only the files Claude actually needs
+  [ ] Re-review project files quarterly; remove what's stale
+  [ ] If sensitivity changed, archive the project
+
+================================================================

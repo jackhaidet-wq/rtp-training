@@ -1,0 +1,80 @@
+================================================================
+CHEAT SHEET 09 - THE THREE RESIDUAL RISKS
+Track 2 - Governance / Lesson 2.4
+================================================================
+
+ONE-LINER
+  Every risk you face with Claude is one you already manage
+  today, in a slightly different shape.
+
+----------------------------------------------------------------
+RISK 1 - INDIRECT PROMPT INJECTION
+----------------------------------------------------------------
+  WHAT IT IS:
+    A document, web page, or tool result contains hidden
+    instructions that try to make Claude take actions you
+    didn't ask for.
+
+  CLOSEST ANALOG:
+    A phishing email that gets past your filter.
+
+  HOW LIKELY:
+    <1% on reputable sites (per OpenAI's Dec 2025 disclosure).
+    Attack density growing ~340% YoY.
+
+  DEFENSE:
+    - Download review gate ON
+    - Blocked-sites list (IT-managed)
+    - Post-tool-call hooks
+    - YOUR awareness - don't run instructions you didn't
+      write
+
+----------------------------------------------------------------
+RISK 2 - ROGUE AGENT BEHAVIOR
+----------------------------------------------------------------
+  WHAT IT IS:
+    Claude does something well-intended but wrong - edits
+    a file you didn't want edited, sends a draft you weren't
+    ready to send.
+
+  CLOSEST ANALOG:
+    A junior analyst trying to be helpful.
+
+  THE DIFFERENCE FROM A HUMAN ANALYST:
+    Every Claude edit is in OneDrive / Google Drive version
+    history within seconds. Reversible by you, in your file.
+
+  DEFENSE:
+    - Per-use approval on connector tool calls
+    - Folder-scoped file access only
+    - Version history (file system + tool-call logs)
+
+----------------------------------------------------------------
+RISK 3 - SENSITIVE DATA LEAKAGE VIA A CONNECTOR
+----------------------------------------------------------------
+  WHAT IT IS:
+    Data flows from one system to another through Claude in
+    a way that wasn't intended.
+
+  CLOSEST ANALOG:
+    The SaaS vendors you OAuth'd to last year. Same trust
+    class.
+
+  THE DIFFERENCE:
+    The data flows to an agentic loop, not a human.
+
+  DEFENSE:
+    - IT vets every connector before it goes on the
+      allowlist
+    - The connector evaluation framework is a deliverable
+    - Per-use approval on every connector tool call
+
+----------------------------------------------------------------
+WHEN TO ESCALATE
+----------------------------------------------------------------
+  - Cowork ran a tool call you didn't expect      -> Will/Henry
+  - Web page asked Claude to do something weird   -> Will/Henry
+  - Connector returned data you weren't expecting -> Will/Henry
+  - You're not sure if you got injected           -> Will/Henry
+
+================================================================

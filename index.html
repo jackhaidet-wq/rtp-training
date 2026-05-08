@@ -660,6 +660,112 @@
     .substep::before { display: none; }
   }
 
+  /* ---------- Resources / cheat sheets ---------- */
+  .resources {
+    margin-left: 162px;
+  }
+  @media (max-width: 760px) {
+    .resources { margin-left: 0; }
+  }
+  .resources__intro {
+    font-family: var(--font-body);
+    font-size: 16.5px;
+    line-height: 1.55;
+    color: var(--ar-ink-2);
+    margin: 0 0 22px;
+    max-width: 64ch;
+  }
+  .resources__group {
+    margin-top: 28px;
+  }
+  .resources__group:first-of-type { margin-top: 0; }
+  .resources__group-head {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 13px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ar-ink-5);
+    margin: 0 0 14px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #e7e7ea;
+  }
+  .resources__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+  @media (max-width: 760px) {
+    .resources__grid { grid-template-columns: 1fr; }
+  }
+  .res-card {
+    display: grid;
+    grid-template-columns: 40px 1fr auto;
+    gap: 14px;
+    align-items: center;
+    background: #fff;
+    border: 1px solid #dcdce2;
+    border-radius: 14px;
+    padding: 14px 16px;
+    text-decoration: none;
+    color: inherit;
+    transition: transform var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out);
+  }
+  .res-card:hover {
+    transform: translateY(-1px);
+    border-color: var(--ar-navy);
+    box-shadow: 0 6px 16px rgba(17, 24, 39, 0.08);
+  }
+  .res-card__num {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 17px;
+    color: var(--ar-ink);
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+    border-right: 1px solid #ececef;
+    padding-right: 10px;
+  }
+  .res-card__body { min-width: 0; }
+  .res-card__title {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.3;
+    color: var(--ar-ink);
+    margin: 0;
+  }
+  .res-card__pair {
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: var(--ar-ink-5);
+    margin: 2px 0 0;
+  }
+  .res-card__open {
+    font-family: var(--font-display);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ar-navy);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+  }
+  .res-card__open svg { width: 12px; height: 12px; }
+
+  html[data-theme="slate"] .res-card {
+    background: rgba(255,255,255,0.04);
+    border-color: rgba(255,255,255,0.12);
+  }
+  html[data-theme="slate"] .res-card:hover {
+    border-color: rgba(255,255,255,0.4);
+  }
+  html[data-theme="slate"] .res-card__num,
+  html[data-theme="slate"] .res-card__title { color: var(--ar-ink); }
+  html[data-theme="slate"] .res-card__num { border-right-color: rgba(255,255,255,0.1); }
+  html[data-theme="slate"] .resources__group-head { border-bottom-color: rgba(255,255,255,0.12); }
+
   /* ---------- Final submission card ---------- */
   .submit {
     margin-top: 72px;
@@ -1537,6 +1643,187 @@
         </a>
       </article>
 
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       RESOURCES — Cheat sheets
+       =================================================================== -->
+  <section class="phase" id="resources">
+    <header class="phase__head">
+      <div class="phase__num">+</div>
+      <div>
+        <h2 class="phase__title">Resources &amp; cheat sheets.</h2>
+        <p class="phase__sub">Fourteen one-page cheat sheets, one per training topic. Open any of
+          them in a new tab to read, print, or save. Companions to the live
+          sessions &mdash; not replacements for them.</p>
+      </div>
+    </header>
+
+    <div class="resources">
+      <p class="resources__intro">
+        Hand out 01&ndash;05 before the Day&nbsp;1 AI&nbsp;101 session,
+        06&ndash;11 before the Day&nbsp;1 governance session, and 12&ndash;14
+        before the Day&nbsp;2 Cowork deep dive. Or just keep them at your desk.
+      </p>
+
+      <div class="resources__group">
+        <h3 class="resources__group-head">Track 1 &middot; AI 101 &amp; Introduction to Claude</h3>
+        <div class="resources__grid">
+          <a class="res-card" href="cheatsheets/01_HOW_LLMS_WORK.txt" target="_blank" rel="noopener">
+            <span class="res-card__num">01</span>
+            <span class="res-card__body">
+              <span class="res-card__title">How LLMs actually work</span>
+              <span class="res-card__pair">Pairs with Lesson 1.1</span>
+            </span>
+            <span class="res-card__open">Open
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg>
+            </span>
+          </a>
+          <a class="res-card" href="cheatsheets/02_CHAT_VS_COWORK_VS_CODE.txt" target="_blank" rel="noopener">
+            <span class="res-card__num">02</span>
+            <span class="res-card__body">
+              <span class="res-card__title">Chat vs. Cowork vs. Code</span>
+              <span class="res-card__pair">Pairs with Lesson 1.2</span>
+            </span>
+            <span class="res-card__open">Open
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg>
+            </span>
+          </a>
+          <a class="res-card" href="cheatsheets/03_PROMPT_PATTERNS_FOR_PE.txt" target="_blank" rel="noopener">
+            <span class="res-card__num">03</span>
+            <span class="res-card__body">
+              <span class="res-card__title">Five prompt patterns for PE</span>
+              <span class="res-card__pair">Pairs with Lesson 1.3</span>
+            </span>
+            <span class="res-card__open">Open
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg>
+            </span>
+          </a>
+          <a class="res-card" href="cheatsheets/04_PROJECTS_AND_FILES.txt" target="_blank" rel="noopener">
+            <span class="res-card__num">04</span>
+            <span class="res-card__body">
+              <span class="res-card__title">Projects and files</span>
+              <span class="res-card__pair">Pairs with Lesson 1.4</span>
+            </span>
+            <span class="res-card__open">Open
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg>
+            </span>
+          </a>
+          <a class="res-card" href="cheatsheets/05_CLAUDE_IN_M365.txt" target="_blank" rel="noopener">
+            <span class="res-card__num">05</span>
+            <span class="res-card__body">
+              <span class="res-card__title">Claude in Microsoft 365</span>
+              <span class="res-card__pair">Pairs with Lesson 1.5</span>
+            </span>
+            <span class="res-card__open">Open
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg>
+            </span>
+          </a>
+        </div>
+      </div>
+
+      <div class="resources__group">
+        <h3 class="resources__group-head">Track 2 &middot; Governance &amp; rules of the road</h3>
+        <div class="resources__grid">
+          <a class="res-card" href="cheatsheets/06_MODERATE_POSTURE.txt" target="_blank" rel="noopener">
+            <span class="res-card__num">06</span>
+            <span class="res-card__body">
+              <span class="res-card__title">The Moderate posture</span>
+              <span class="res-card__pair">Pairs with Lesson 2.1</span>
+            </span>
+            <span class="res-card__open">Open
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg>
+            </span>
+          </a>
+          <a class="res-card" href="cheatsheets/07_HOW_COWORK_WORKS.txt" target="_blank" rel="noopener">
+            <span class="res-card__num">07</span>
+            <span class="res-card__body">
+              <span class="res-card__title">How Cowork actually works</span>
+              <span class="res-card__pair">Pairs with Lesson 2.2</span>
+            </span>
+            <span class="res-card__open">Open
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg>
+            </span>
+          </a>
+          <a class="res-card" href="cheatsheets/08_WHAT_STAYS_OUT_OF_CLAUDE.txt" target="_blank" rel="noopener">
+            <span class="res-card__num">08</span>
+            <span class="res-card__body">
+              <span class="res-card__title">What stays out of Claude</span>
+              <span class="res-card__pair">Pairs with Lesson 2.3</span>
+            </span>
+            <span class="res-card__open">Open
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg>
+            </span>
+          </a>
+          <a class="res-card" href="cheatsheets/09_THREE_RESIDUAL_RISKS.txt" target="_blank" rel="noopener">
+            <span class="res-card__num">09</span>
+            <span class="res-card__body">
+              <span class="res-card__title">The three residual risks</span>
+              <span class="res-card__pair">Pairs with Lesson 2.4</span>
+            </span>
+            <span class="res-card__open">Open
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg>
+            </span>
+          </a>
+          <a class="res-card" href="cheatsheets/10_CONNECTOR_RULES.txt" target="_blank" rel="noopener">
+            <span class="res-card__num">10</span>
+            <span class="res-card__body">
+              <span class="res-card__title">Connector rules: read / write / approval</span>
+              <span class="res-card__pair">Pairs with Lesson 2.5</span>
+            </span>
+            <span class="res-card__open">Open
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg>
+            </span>
+          </a>
+          <a class="res-card" href="cheatsheets/11_CLAUDEMD_BASELINE.txt" target="_blank" rel="noopener">
+            <span class="res-card__num">11</span>
+            <span class="res-card__body">
+              <span class="res-card__title">Your Claude.md baseline</span>
+              <span class="res-card__pair">Pairs with Lesson 2.6</span>
+            </span>
+            <span class="res-card__open">Open
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg>
+            </span>
+          </a>
+        </div>
+      </div>
+
+      <div class="resources__group">
+        <h3 class="resources__group-head">Track 3 &middot; Cowork deep dive</h3>
+        <div class="resources__grid">
+          <a class="res-card" href="cheatsheets/12_SKILLS.txt" target="_blank" rel="noopener">
+            <span class="res-card__num">12</span>
+            <span class="res-card__body">
+              <span class="res-card__title">Skills</span>
+              <span class="res-card__pair">Pairs with Lesson 3.1</span>
+            </span>
+            <span class="res-card__open">Open
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg>
+            </span>
+          </a>
+          <a class="res-card" href="cheatsheets/13_SCHEDULED_TASKS.txt" target="_blank" rel="noopener">
+            <span class="res-card__num">13</span>
+            <span class="res-card__body">
+              <span class="res-card__title">Scheduled tasks</span>
+              <span class="res-card__pair">Pairs with Lesson 3.2</span>
+            </span>
+            <span class="res-card__open">Open
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg>
+            </span>
+          </a>
+          <a class="res-card" href="cheatsheets/14_MULTI_STEP_AGENT_PATTERNS.txt" target="_blank" rel="noopener">
+            <span class="res-card__num">14</span>
+            <span class="res-card__body">
+              <span class="res-card__title">Multi-step agent patterns</span>
+              <span class="res-card__pair">Pairs with Lesson 3.3</span>
+            </span>
+            <span class="res-card__open">Open
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg>
+            </span>
+          </a>
+        </div>
+      </div>
     </div>
   </section>
 

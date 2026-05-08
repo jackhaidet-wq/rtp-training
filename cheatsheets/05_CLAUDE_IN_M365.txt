@@ -1,0 +1,55 @@
+================================================================
+CHEAT SHEET 05 - CLAUDE IN MICROSOFT 365
+Track 1 - AI 101 / Lesson 1.5
+================================================================
+
+WHAT M365 PLUGINS ARE
+  Side-panel Claude access inside Word, Excel, and PowerPoint.
+  These are TOOLS, not connectors - configured under the
+  moderate posture as part of training.
+
+WORD - SIDE PANEL
+  Good for:
+    - Drafting from outline
+    - Tightening, rewriting, tone adjustments
+    - Creating a 1-pager from a long document
+    - Adding a section that follows a firm template
+  Watch out for:
+    - Don't paste MNPI, deal terms, LP data, or portco
+      financials into the side panel
+    - Verify any number Claude inserts - especially in
+      memos that go to IC or LPs
+
+EXCEL - SIDE PANEL
+  Good for:
+    - Formula explanations and fixes
+    - Building summary sheets from raw data
+    - Pivot/aggregation patterns
+    - Light data cleaning
+  Watch out for:
+    - Auditing computed numbers before sending
+    - Confabulated cell references - check before relying
+
+POWERPOINT - SIDE PANEL
+  Good for:
+    - Speaker notes from slide content
+    - Re-flowing a slide into a tighter format
+    - Drafting an exec-summary slide from a deck
+  Watch out for:
+    - Brand consistency (firm template still applies)
+    - Quotes / claims sourced from somewhere - verify
+
+WHAT M365 CLAUDE DOES NOT DO
+  - No auto-send email
+  - No shared mailbox access
+  - No auto-approve on downloads or external sharing
+  - No edits to files outside what you have open
+
+----------------------------------------------------------------
+ONE-LINE GUIDE
+----------------------------------------------------------------
+  Side-panel Claude is great as an editor / drafter / explainer
+  inside the file you're already in. It is NOT an automation
+  layer that reaches across mailboxes or drives.
+
+================================================================
