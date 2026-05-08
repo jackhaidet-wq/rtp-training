@@ -660,63 +660,150 @@
     .substep::before { display: none; }
   }
 
-  /* ---------- Resources / cheat sheets ---------- */
-  .resources {
-    margin-left: 162px;
+  /* ---------- Tabs ---------- */
+  .tabs {
+    margin: 4px 0 24px;
+    display: flex;
+    gap: 4px;
+    border-bottom: 1px solid #e7e7ea;
+    position: relative;
+    z-index: 1;
   }
   @media (max-width: 760px) {
-    .resources { margin-left: 0; }
+    .tabs { margin: 0 0 18px; }
   }
-  .resources__intro {
-    font-family: var(--font-body);
-    font-size: 16.5px;
-    line-height: 1.55;
-    color: var(--ar-ink-2);
-    margin: 0 0 22px;
-    max-width: 64ch;
-  }
-  .resources__group {
-    margin-top: 28px;
-  }
-  .resources__group:first-of-type { margin-top: 0; }
-  .resources__group-head {
+  .tabs__btn {
+    appearance: none;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
     font-family: var(--font-display);
     font-weight: 500;
-    font-size: 13px;
-    letter-spacing: 0.14em;
+    font-size: 15px;
+    letter-spacing: 0.02em;
+    color: var(--ar-ink-5);
+    padding: 14px 20px;
+    margin-bottom: -1px;
+    border-bottom: 2px solid transparent;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: color var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out);
+  }
+  .tabs__btn:hover { color: var(--ar-ink); }
+  .tabs__btn--active {
+    color: var(--ar-ink);
+    border-bottom-color: var(--ar-navy);
+  }
+  .tabs__count {
+    font-family: var(--font-body);
+    font-size: 11px;
+    background: #f3f3f5;
+    color: var(--ar-ink-5);
+    padding: 2px 7px;
+    border-radius: 999px;
+    line-height: 1;
+    letter-spacing: 0;
+  }
+  .tabs__btn--active .tabs__count {
+    background: var(--ar-navy);
+    color: #fff;
+  }
+  html[data-theme="slate"] .tabs { border-bottom-color: rgba(255,255,255,0.12); }
+  html[data-theme="slate"] .tabs__btn--active { border-bottom-color: #fff; }
+  html[data-theme="slate"] .tabs__count { background: rgba(255,255,255,0.08); }
+
+  .panel[hidden] { display: none !important; }
+
+  /* ---------- Cheat sheets · INDEX ---------- */
+  .cs-index__head {
+    max-width: 760px;
+    margin: 0 0 36px;
+  }
+  .cs-index__eyebrow {
+    font-family: var(--font-display);
+    font-size: 12px;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
     color: var(--ar-ink-5);
-    margin: 0 0 14px;
-    padding-bottom: 8px;
-    border-bottom: 1px solid #e7e7ea;
+    margin-bottom: 12px;
   }
-  .resources__grid {
+  .cs-index__title {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 56px;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--ar-ink);
+    margin: 0 0 14px;
+  }
+  @media (max-width: 760px) { .cs-index__title { font-size: 40px; } }
+  .cs-index__lede {
+    font-family: var(--font-body);
+    font-size: 18px;
+    line-height: 1.55;
+    color: var(--ar-ink-2);
+    margin: 0;
+    max-width: 60ch;
+  }
+
+  .cs-index__group { margin-top: 48px; }
+  .cs-index__group:first-of-type { margin-top: 0; }
+  .cs-index__group-head {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 17px;
+    letter-spacing: 0.02em;
+    color: var(--ar-ink);
+    margin: 0 0 18px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #e7e7ea;
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+  }
+  .cs-index__group-num {
+    font-family: var(--font-display);
+    font-size: 13px;
+    letter-spacing: 0.16em;
+    color: var(--ar-ink-5);
+    font-variant-numeric: tabular-nums;
+  }
+  .cs-index__grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 14px;
+    gap: 12px;
   }
   @media (max-width: 760px) {
-    .resources__grid { grid-template-columns: 1fr; }
+    .cs-index__grid { grid-template-columns: 1fr; }
   }
-  .res-card {
-    display: grid;
-    grid-template-columns: 40px 1fr auto;
-    gap: 14px;
-    align-items: center;
+
+  .cs-card {
+    appearance: none;
     background: #fff;
     border: 1px solid #dcdce2;
     border-radius: 14px;
-    padding: 14px 16px;
-    text-decoration: none;
+    padding: 16px 18px;
+    cursor: pointer;
+    text-align: left;
     color: inherit;
+    font-family: inherit;
+    display: grid;
+    grid-template-columns: 44px 1fr 18px;
+    align-items: center;
+    gap: 16px;
     transition: transform var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out);
   }
-  .res-card:hover {
+  .cs-card:hover {
     transform: translateY(-1px);
     border-color: var(--ar-navy);
-    box-shadow: 0 6px 16px rgba(17, 24, 39, 0.08);
+    box-shadow: 0 6px 18px rgba(17, 24, 39, 0.07);
   }
-  .res-card__num {
+  .cs-card:focus-visible {
+    outline: 2px solid var(--ar-navy);
+    outline-offset: 2px;
+  }
+  .cs-card__num {
     font-family: var(--font-display);
     font-weight: 500;
     font-size: 17px;
@@ -724,47 +811,332 @@
     text-align: center;
     font-variant-numeric: tabular-nums;
     border-right: 1px solid #ececef;
-    padding-right: 10px;
+    padding-right: 12px;
+    line-height: 1;
   }
-  .res-card__body { min-width: 0; }
-  .res-card__title {
+  .cs-card__body { min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+  .cs-card__title {
     font-family: var(--font-display);
     font-weight: 500;
-    font-size: 16px;
+    font-size: 16.5px;
     line-height: 1.3;
     color: var(--ar-ink);
-    margin: 0;
   }
-  .res-card__pair {
+  .cs-card__pair {
     font-family: var(--font-body);
     font-size: 13px;
     color: var(--ar-ink-5);
-    margin: 2px 0 0;
   }
-  .res-card__open {
-    font-family: var(--font-display);
-    font-size: 11px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--ar-navy);
+  .cs-card__chev {
+    color: var(--ar-ink-5);
     display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    white-space: nowrap;
   }
-  .res-card__open svg { width: 12px; height: 12px; }
+  .cs-card__chev svg { width: 18px; height: 18px; }
+  .cs-card:hover .cs-card__chev { color: var(--ar-navy); }
 
-  html[data-theme="slate"] .res-card {
+  html[data-theme="slate"] .cs-card {
     background: rgba(255,255,255,0.04);
     border-color: rgba(255,255,255,0.12);
   }
-  html[data-theme="slate"] .res-card:hover {
-    border-color: rgba(255,255,255,0.4);
+  html[data-theme="slate"] .cs-card:hover { border-color: rgba(255,255,255,0.45); }
+  html[data-theme="slate"] .cs-card__num { border-right-color: rgba(255,255,255,0.1); }
+  html[data-theme="slate"] .cs-index__group-head,
+  html[data-theme="slate"] .cs-reader__bar { border-bottom-color: rgba(255,255,255,0.12); }
+
+  /* ---------- Cheat sheets · READER ---------- */
+  .cs-reader__bar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    padding: 14px 0 18px;
+    margin-bottom: 28px;
+    border-bottom: 1px solid #e7e7ea;
   }
-  html[data-theme="slate"] .res-card__num,
-  html[data-theme="slate"] .res-card__title { color: var(--ar-ink); }
-  html[data-theme="slate"] .res-card__num { border-right-color: rgba(255,255,255,0.1); }
-  html[data-theme="slate"] .resources__group-head { border-bottom-color: rgba(255,255,255,0.12); }
+  .cs-reader__back {
+    appearance: none;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    font-family: var(--font-display);
+    font-size: 14px;
+    letter-spacing: 0.02em;
+    color: var(--ar-ink-2);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 8px 6px 0;
+  }
+  .cs-reader__back:hover { color: var(--ar-ink); }
+  .cs-reader__back svg { width: 14px; height: 14px; }
+
+  .cs-reader__nav {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-left: auto;
+  }
+  .cs-reader__nav-btn {
+    appearance: none;
+    background: transparent;
+    border: 1px solid #dcdce2;
+    border-radius: 999px;
+    width: 30px; height: 30px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--ar-ink-2);
+    transition: border-color var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out);
+  }
+  .cs-reader__nav-btn:hover { color: var(--ar-ink); border-color: var(--ar-navy); }
+  .cs-reader__nav-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+  .cs-reader__nav-btn svg { width: 14px; height: 14px; }
+  .cs-reader__counter {
+    font-family: var(--font-display);
+    font-size: 13px;
+    color: var(--ar-ink-5);
+    font-variant-numeric: tabular-nums;
+    min-width: 50px;
+    text-align: center;
+  }
+
+  .cs-reader__actions {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .cs-reader__action {
+    appearance: none;
+    cursor: pointer;
+    text-decoration: none;
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 9px 14px;
+    border-radius: 999px;
+    border: 1.5px solid var(--ar-navy);
+    background: transparent;
+    color: var(--ar-navy);
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    transition: background var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out);
+  }
+  .cs-reader__action svg { width: 14px; height: 14px; }
+  .cs-reader__action--ghost {
+    border-color: #d8d8dc;
+    color: var(--ar-ink-2);
+  }
+  .cs-reader__action--ghost:hover { color: var(--ar-ink); border-color: var(--ar-ink); }
+  .cs-reader__action--primary { background: var(--ar-navy); color: #fff; }
+  .cs-reader__action--primary:hover { background: var(--ar-ink); border-color: var(--ar-ink); }
+
+  html[data-theme="slate"] .cs-reader__action--primary {
+    background: #fff; color: var(--ar-ink); border-color: #fff;
+  }
+  html[data-theme="slate"] .cs-reader__nav-btn { border-color: rgba(255,255,255,0.18); }
+
+  /* The document */
+  .cs-doc {
+    background: #fff;
+    border: 1px solid #e7e7ea;
+    border-radius: 18px;
+    padding: 56px 64px;
+    max-width: 780px;
+    margin: 0 auto;
+    box-shadow:
+      0 1px 0 rgba(17, 24, 39, 0.04),
+      0 12px 32px rgba(17, 24, 39, 0.06);
+  }
+  @media (max-width: 760px) {
+    .cs-doc { padding: 32px 24px; border-radius: 14px; }
+  }
+  html[data-theme="slate"] .cs-doc {
+    background: rgba(255,255,255,0.03);
+    border-color: rgba(255,255,255,0.1);
+  }
+
+  .cs-doc__loading {
+    text-align: center;
+    color: var(--ar-ink-5);
+    font-size: 14px;
+    padding: 40px 0;
+  }
+
+  .cs-doc__eyebrow {
+    font-family: var(--font-display);
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ar-ink-5);
+    margin: 0 0 10px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .cs-doc__eyebrow strong {
+    font-weight: 500;
+    color: var(--ar-ink);
+    font-variant-numeric: tabular-nums;
+  }
+  .cs-doc__eyebrow-rule {
+    flex: 1;
+    height: 1px;
+    background: #ececef;
+  }
+  .cs-doc__title {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 36px;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--ar-ink);
+    margin: 0 0 6px;
+  }
+  @media (max-width: 760px) { .cs-doc__title { font-size: 28px; } }
+  .cs-doc__sub {
+    font-family: var(--font-body);
+    font-size: 14.5px;
+    color: var(--ar-ink-5);
+    margin: 0 0 32px;
+  }
+
+  .cs-doc h2 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 12.5px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ar-navy);
+    margin: 36px 0 14px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #ececef;
+  }
+  .cs-doc h2:first-of-type { margin-top: 0; }
+  html[data-theme="slate"] .cs-doc h2 {
+    color: #fff;
+    border-bottom-color: rgba(255,255,255,0.14);
+  }
+
+  .cs-doc h3 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 16px;
+    color: var(--ar-ink);
+    margin: 22px 0 8px;
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+  }
+  .cs-doc h3 .cs-doc__num {
+    color: var(--ar-ink-5);
+    font-variant-numeric: tabular-nums;
+    min-width: 1.5em;
+  }
+
+  .cs-doc p {
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--ar-ink);
+    margin: 0 0 14px;
+  }
+  .cs-doc p:last-child { margin-bottom: 0; }
+
+  .cs-doc ul, .cs-doc ol {
+    margin: 0 0 18px;
+    padding-left: 22px;
+  }
+  .cs-doc li {
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--ar-ink);
+    margin-bottom: 6px;
+  }
+  .cs-doc li::marker { color: var(--ar-ink-5); }
+  .cs-doc ul.cs-doc--check { list-style: none; padding-left: 0; }
+  .cs-doc ul.cs-doc--check li {
+    position: relative;
+    padding-left: 28px;
+  }
+  .cs-doc ul.cs-doc--check li::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 6px;
+    width: 14px; height: 14px;
+    border: 1.5px solid #c5c5cc;
+    border-radius: 3px;
+  }
+
+  .cs-doc dl {
+    margin: 0 0 18px;
+    display: grid;
+    grid-template-columns: minmax(180px, 1fr) auto;
+    gap: 4px 16px;
+    border-top: 1px solid #ececef;
+    padding-top: 10px;
+  }
+  .cs-doc dt {
+    font-family: var(--font-body);
+    font-size: 15px;
+    color: var(--ar-ink-2);
+    padding: 4px 0;
+  }
+  .cs-doc dd {
+    font-family: var(--font-display);
+    font-size: 14px;
+    letter-spacing: 0.04em;
+    color: var(--ar-ink);
+    margin: 0;
+    padding: 4px 0;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+  html[data-theme="slate"] .cs-doc dl { border-top-color: rgba(255,255,255,0.12); }
+
+  .cs-doc__quote {
+    font-family: var(--font-mono, "JetBrains Mono", ui-monospace, monospace);
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: var(--ar-ink);
+    background: #f7f7f4;
+    border-left: 3px solid var(--ar-navy);
+    border-radius: 6px;
+    padding: 14px 18px;
+    margin: 0 0 18px;
+    white-space: pre-wrap;
+    overflow-x: auto;
+  }
+  html[data-theme="slate"] .cs-doc__quote {
+    background: rgba(255,255,255,0.05);
+    border-left-color: #fff;
+  }
+
+  .cs-doc__divider {
+    border: 0;
+    border-top: 1px solid #ececef;
+    margin: 32px 0;
+  }
+  html[data-theme="slate"] .cs-doc__divider { border-top-color: rgba(255,255,255,0.12); }
+
+  /* Print: only the active reader, no chrome */
+  @media print {
+    .topbar, .tabs, .foot, .cs-reader__bar { display: none !important; }
+    .panel[data-panel="course"] { display: none !important; }
+    .panel[data-panel="cheatsheets"] [data-view="index"] { display: none !important; }
+    .cs-doc {
+      box-shadow: none;
+      border: 0;
+      padding: 0;
+      max-width: none;
+    }
+    body { background: #fff; }
+    .bg-smoke { display: none !important; }
+  }
 
   /* ---------- Final submission card ---------- */
   .submit {
@@ -1313,6 +1685,24 @@
     </div>
   </header>
 
+  <!-- ===================================================================
+       TAB NAVIGATION
+       =================================================================== -->
+  <nav class="tabs" role="tablist" aria-label="Sections">
+    <button class="tabs__btn tabs__btn--active" type="button" role="tab" aria-selected="true" data-tab="course" id="tab-course">
+      Training Course
+    </button>
+    <button class="tabs__btn" type="button" role="tab" aria-selected="false" data-tab="cheatsheets" id="tab-cheatsheets">
+      Cheat Sheets
+      <span class="tabs__count">14</span>
+    </button>
+  </nav>
+
+  <!-- ===================================================================
+       PANEL · TRAINING COURSE
+       =================================================================== -->
+  <div class="panel" data-panel="course" role="tabpanel" aria-labelledby="tab-course">
+
   <!-- Hero -->
   <section class="hero">
     <div class="hero__eyebrow"><span id="hero-eyebrow-text">Onboarding Track · Get started with Claude</span></div>
@@ -1646,186 +2036,6 @@
     </div>
   </section>
 
-  <!-- ===================================================================
-       RESOURCES — Cheat sheets
-       =================================================================== -->
-  <section class="phase" id="resources">
-    <header class="phase__head">
-      <div class="phase__num">+</div>
-      <div>
-        <h2 class="phase__title">Resources &amp; cheat sheets.</h2>
-        <p class="phase__sub">Fourteen one-page cheat sheets, one per training topic. Open any of
-          them in a new tab to read, print, or save. Companions to the live
-          sessions &mdash; not replacements for them.</p>
-      </div>
-    </header>
-
-    <div class="resources">
-      <p class="resources__intro">
-        Hand out 01&ndash;05 before the Day&nbsp;1 AI&nbsp;101 session,
-        06&ndash;11 before the Day&nbsp;1 governance session, and 12&ndash;14
-        before the Day&nbsp;2 Cowork deep dive. Or just keep them at your desk.
-      </p>
-
-      <div class="resources__group">
-        <h3 class="resources__group-head">Track 1 &middot; AI 101 &amp; Introduction to Claude</h3>
-        <div class="resources__grid">
-          <a class="res-card" href="cheatsheets/01_HOW_LLMS_WORK.txt" target="_blank" rel="noopener">
-            <span class="res-card__num">01</span>
-            <span class="res-card__body">
-              <span class="res-card__title">How LLMs actually work</span>
-              <span class="res-card__pair">Pairs with Lesson 1.1</span>
-            </span>
-            <span class="res-card__open">Open
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg>
-            </span>
-          </a>
-          <a class="res-card" href="cheatsheets/02_CHAT_VS_COWORK_VS_CODE.txt" target="_blank" rel="noopener">
-            <span class="res-card__num">02</span>
-            <span class="res-card__body">
-              <span class="res-card__title">Chat vs. Cowork vs. Code</span>
-              <span class="res-card__pair">Pairs with Lesson 1.2</span>
-            </span>
-            <span class="res-card__open">Open
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg>
-            </span>
-          </a>
-          <a class="res-card" href="cheatsheets/03_PROMPT_PATTERNS_FOR_PE.txt" target="_blank" rel="noopener">
-            <span class="res-card__num">03</span>
-            <span class="res-card__body">
-              <span class="res-card__title">Five prompt patterns for PE</span>
-              <span class="res-card__pair">Pairs with Lesson 1.3</span>
-            </span>
-            <span class="res-card__open">Open
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg>
-            </span>
-          </a>
-          <a class="res-card" href="cheatsheets/04_PROJECTS_AND_FILES.txt" target="_blank" rel="noopener">
-            <span class="res-card__num">04</span>
-            <span class="res-card__body">
-              <span class="res-card__title">Projects and files</span>
-              <span class="res-card__pair">Pairs with Lesson 1.4</span>
-            </span>
-            <span class="res-card__open">Open
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg>
-            </span>
-          </a>
-          <a class="res-card" href="cheatsheets/05_CLAUDE_IN_M365.txt" target="_blank" rel="noopener">
-            <span class="res-card__num">05</span>
-            <span class="res-card__body">
-              <span class="res-card__title">Claude in Microsoft 365</span>
-              <span class="res-card__pair">Pairs with Lesson 1.5</span>
-            </span>
-            <span class="res-card__open">Open
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg>
-            </span>
-          </a>
-        </div>
-      </div>
-
-      <div class="resources__group">
-        <h3 class="resources__group-head">Track 2 &middot; Governance &amp; rules of the road</h3>
-        <div class="resources__grid">
-          <a class="res-card" href="cheatsheets/06_MODERATE_POSTURE.txt" target="_blank" rel="noopener">
-            <span class="res-card__num">06</span>
-            <span class="res-card__body">
-              <span class="res-card__title">The Moderate posture</span>
-              <span class="res-card__pair">Pairs with Lesson 2.1</span>
-            </span>
-            <span class="res-card__open">Open
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg>
-            </span>
-          </a>
-          <a class="res-card" href="cheatsheets/07_HOW_COWORK_WORKS.txt" target="_blank" rel="noopener">
-            <span class="res-card__num">07</span>
-            <span class="res-card__body">
-              <span class="res-card__title">How Cowork actually works</span>
-              <span class="res-card__pair">Pairs with Lesson 2.2</span>
-            </span>
-            <span class="res-card__open">Open
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg>
-            </span>
-          </a>
-          <a class="res-card" href="cheatsheets/08_WHAT_STAYS_OUT_OF_CLAUDE.txt" target="_blank" rel="noopener">
-            <span class="res-card__num">08</span>
-            <span class="res-card__body">
-              <span class="res-card__title">What stays out of Claude</span>
-              <span class="res-card__pair">Pairs with Lesson 2.3</span>
-            </span>
-            <span class="res-card__open">Open
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg>
-            </span>
-          </a>
-          <a class="res-card" href="cheatsheets/09_THREE_RESIDUAL_RISKS.txt" target="_blank" rel="noopener">
-            <span class="res-card__num">09</span>
-            <span class="res-card__body">
-              <span class="res-card__title">The three residual risks</span>
-              <span class="res-card__pair">Pairs with Lesson 2.4</span>
-            </span>
-            <span class="res-card__open">Open
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg>
-            </span>
-          </a>
-          <a class="res-card" href="cheatsheets/10_CONNECTOR_RULES.txt" target="_blank" rel="noopener">
-            <span class="res-card__num">10</span>
-            <span class="res-card__body">
-              <span class="res-card__title">Connector rules: read / write / approval</span>
-              <span class="res-card__pair">Pairs with Lesson 2.5</span>
-            </span>
-            <span class="res-card__open">Open
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg>
-            </span>
-          </a>
-          <a class="res-card" href="cheatsheets/11_CLAUDEMD_BASELINE.txt" target="_blank" rel="noopener">
-            <span class="res-card__num">11</span>
-            <span class="res-card__body">
-              <span class="res-card__title">Your Claude.md baseline</span>
-              <span class="res-card__pair">Pairs with Lesson 2.6</span>
-            </span>
-            <span class="res-card__open">Open
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg>
-            </span>
-          </a>
-        </div>
-      </div>
-
-      <div class="resources__group">
-        <h3 class="resources__group-head">Track 3 &middot; Cowork deep dive</h3>
-        <div class="resources__grid">
-          <a class="res-card" href="cheatsheets/12_SKILLS.txt" target="_blank" rel="noopener">
-            <span class="res-card__num">12</span>
-            <span class="res-card__body">
-              <span class="res-card__title">Skills</span>
-              <span class="res-card__pair">Pairs with Lesson 3.1</span>
-            </span>
-            <span class="res-card__open">Open
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg>
-            </span>
-          </a>
-          <a class="res-card" href="cheatsheets/13_SCHEDULED_TASKS.txt" target="_blank" rel="noopener">
-            <span class="res-card__num">13</span>
-            <span class="res-card__body">
-              <span class="res-card__title">Scheduled tasks</span>
-              <span class="res-card__pair">Pairs with Lesson 3.2</span>
-            </span>
-            <span class="res-card__open">Open
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg>
-            </span>
-          </a>
-          <a class="res-card" href="cheatsheets/14_MULTI_STEP_AGENT_PATTERNS.txt" target="_blank" rel="noopener">
-            <span class="res-card__num">14</span>
-            <span class="res-card__body">
-              <span class="res-card__title">Multi-step agent patterns</span>
-              <span class="res-card__pair">Pairs with Lesson 3.3</span>
-            </span>
-            <span class="res-card__open">Open
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg>
-            </span>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- ===================================================================
        FINAL — Submit certificates
@@ -1863,6 +2073,196 @@
       </span>
     </div>
   </section>
+
+  </div><!-- /panel · course -->
+
+  <!-- ===================================================================
+       PANEL · CHEAT SHEETS
+       =================================================================== -->
+  <div class="panel" data-panel="cheatsheets" role="tabpanel" aria-labelledby="tab-cheatsheets" hidden>
+
+    <!-- INDEX VIEW -->
+    <section class="cs-view" data-view="index">
+      <header class="cs-index__head">
+        <div class="cs-index__eyebrow">Reference · 14 cheat sheets</div>
+        <h1 class="cs-index__title">Cheat sheets.</h1>
+        <p class="cs-index__lede">
+          One page per training topic. Tap any sheet to open it in the
+          reader, then download or print.
+        </p>
+      </header>
+
+      <div class="cs-index">
+
+        <div class="cs-index__group">
+          <h2 class="cs-index__group-head"><span class="cs-index__group-num">01</span>Track 1 · AI 101 &amp; Introduction to Claude</h2>
+          <div class="cs-index__grid">
+            <button class="cs-card" type="button" data-sheet="01_HOW_LLMS_WORK" data-num="01" data-pair="Lesson 1.1" data-title="How LLMs actually work">
+              <span class="cs-card__num">01</span>
+              <span class="cs-card__body">
+                <span class="cs-card__title">How LLMs actually work</span>
+                <span class="cs-card__pair">Pairs with Lesson 1.1</span>
+              </span>
+              <span class="cs-card__chev" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"/></svg>
+              </span>
+            </button>
+            <button class="cs-card" type="button" data-sheet="02_CHAT_VS_COWORK_VS_CODE" data-num="02" data-pair="Lesson 1.2" data-title="Chat vs. Cowork vs. Code">
+              <span class="cs-card__num">02</span>
+              <span class="cs-card__body">
+                <span class="cs-card__title">Chat vs. Cowork vs. Code</span>
+                <span class="cs-card__pair">Pairs with Lesson 1.2</span>
+              </span>
+              <span class="cs-card__chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"/></svg></span>
+            </button>
+            <button class="cs-card" type="button" data-sheet="03_PROMPT_PATTERNS_FOR_PE" data-num="03" data-pair="Lesson 1.3" data-title="Five prompt patterns for PE">
+              <span class="cs-card__num">03</span>
+              <span class="cs-card__body">
+                <span class="cs-card__title">Five prompt patterns for PE</span>
+                <span class="cs-card__pair">Pairs with Lesson 1.3</span>
+              </span>
+              <span class="cs-card__chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"/></svg></span>
+            </button>
+            <button class="cs-card" type="button" data-sheet="04_PROJECTS_AND_FILES" data-num="04" data-pair="Lesson 1.4" data-title="Projects and files">
+              <span class="cs-card__num">04</span>
+              <span class="cs-card__body">
+                <span class="cs-card__title">Projects and files</span>
+                <span class="cs-card__pair">Pairs with Lesson 1.4</span>
+              </span>
+              <span class="cs-card__chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"/></svg></span>
+            </button>
+            <button class="cs-card" type="button" data-sheet="05_CLAUDE_IN_M365" data-num="05" data-pair="Lesson 1.5" data-title="Claude in Microsoft 365">
+              <span class="cs-card__num">05</span>
+              <span class="cs-card__body">
+                <span class="cs-card__title">Claude in Microsoft 365</span>
+                <span class="cs-card__pair">Pairs with Lesson 1.5</span>
+              </span>
+              <span class="cs-card__chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"/></svg></span>
+            </button>
+          </div>
+        </div>
+
+        <div class="cs-index__group">
+          <h2 class="cs-index__group-head"><span class="cs-index__group-num">02</span>Track 2 · Governance &amp; rules of the road</h2>
+          <div class="cs-index__grid">
+            <button class="cs-card" type="button" data-sheet="06_MODERATE_POSTURE" data-num="06" data-pair="Lesson 2.1" data-title="The Moderate posture">
+              <span class="cs-card__num">06</span>
+              <span class="cs-card__body">
+                <span class="cs-card__title">The Moderate posture</span>
+                <span class="cs-card__pair">Pairs with Lesson 2.1</span>
+              </span>
+              <span class="cs-card__chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"/></svg></span>
+            </button>
+            <button class="cs-card" type="button" data-sheet="07_HOW_COWORK_WORKS" data-num="07" data-pair="Lesson 2.2" data-title="How Cowork actually works">
+              <span class="cs-card__num">07</span>
+              <span class="cs-card__body">
+                <span class="cs-card__title">How Cowork actually works</span>
+                <span class="cs-card__pair">Pairs with Lesson 2.2</span>
+              </span>
+              <span class="cs-card__chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"/></svg></span>
+            </button>
+            <button class="cs-card" type="button" data-sheet="08_WHAT_STAYS_OUT_OF_CLAUDE" data-num="08" data-pair="Lesson 2.3" data-title="What stays out of Claude">
+              <span class="cs-card__num">08</span>
+              <span class="cs-card__body">
+                <span class="cs-card__title">What stays out of Claude</span>
+                <span class="cs-card__pair">Pairs with Lesson 2.3</span>
+              </span>
+              <span class="cs-card__chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"/></svg></span>
+            </button>
+            <button class="cs-card" type="button" data-sheet="09_THREE_RESIDUAL_RISKS" data-num="09" data-pair="Lesson 2.4" data-title="The three residual risks">
+              <span class="cs-card__num">09</span>
+              <span class="cs-card__body">
+                <span class="cs-card__title">The three residual risks</span>
+                <span class="cs-card__pair">Pairs with Lesson 2.4</span>
+              </span>
+              <span class="cs-card__chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"/></svg></span>
+            </button>
+            <button class="cs-card" type="button" data-sheet="10_CONNECTOR_RULES" data-num="10" data-pair="Lesson 2.5" data-title="Connector rules: read / write / approval">
+              <span class="cs-card__num">10</span>
+              <span class="cs-card__body">
+                <span class="cs-card__title">Connector rules: read / write / approval</span>
+                <span class="cs-card__pair">Pairs with Lesson 2.5</span>
+              </span>
+              <span class="cs-card__chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"/></svg></span>
+            </button>
+            <button class="cs-card" type="button" data-sheet="11_CLAUDEMD_BASELINE" data-num="11" data-pair="Lesson 2.6" data-title="Your Claude.md baseline">
+              <span class="cs-card__num">11</span>
+              <span class="cs-card__body">
+                <span class="cs-card__title">Your Claude.md baseline</span>
+                <span class="cs-card__pair">Pairs with Lesson 2.6</span>
+              </span>
+              <span class="cs-card__chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"/></svg></span>
+            </button>
+          </div>
+        </div>
+
+        <div class="cs-index__group">
+          <h2 class="cs-index__group-head"><span class="cs-index__group-num">03</span>Track 3 · Cowork deep dive</h2>
+          <div class="cs-index__grid">
+            <button class="cs-card" type="button" data-sheet="12_SKILLS" data-num="12" data-pair="Lesson 3.1" data-title="Skills">
+              <span class="cs-card__num">12</span>
+              <span class="cs-card__body">
+                <span class="cs-card__title">Skills</span>
+                <span class="cs-card__pair">Pairs with Lesson 3.1</span>
+              </span>
+              <span class="cs-card__chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"/></svg></span>
+            </button>
+            <button class="cs-card" type="button" data-sheet="13_SCHEDULED_TASKS" data-num="13" data-pair="Lesson 3.2" data-title="Scheduled tasks">
+              <span class="cs-card__num">13</span>
+              <span class="cs-card__body">
+                <span class="cs-card__title">Scheduled tasks</span>
+                <span class="cs-card__pair">Pairs with Lesson 3.2</span>
+              </span>
+              <span class="cs-card__chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"/></svg></span>
+            </button>
+            <button class="cs-card" type="button" data-sheet="14_MULTI_STEP_AGENT_PATTERNS" data-num="14" data-pair="Lesson 3.3" data-title="Multi-step agent patterns">
+              <span class="cs-card__num">14</span>
+              <span class="cs-card__body">
+                <span class="cs-card__title">Multi-step agent patterns</span>
+                <span class="cs-card__pair">Pairs with Lesson 3.3</span>
+              </span>
+              <span class="cs-card__chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"/></svg></span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- READER VIEW -->
+    <section class="cs-view" data-view="reader" hidden>
+      <div class="cs-reader__bar">
+        <button class="cs-reader__back" type="button" data-action="back">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          All cheat sheets
+        </button>
+        <nav class="cs-reader__nav" aria-label="Cheat sheet navigation">
+          <button class="cs-reader__nav-btn" type="button" data-action="prev" aria-label="Previous cheat sheet">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <span class="cs-reader__counter" data-counter></span>
+          <button class="cs-reader__nav-btn" type="button" data-action="next" aria-label="Next cheat sheet">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"/></svg>
+          </button>
+        </nav>
+        <div class="cs-reader__actions">
+          <button class="cs-reader__action cs-reader__action--ghost" type="button" data-action="print">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+            Print
+          </button>
+          <a class="cs-reader__action cs-reader__action--primary" data-action="download" download>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download .txt
+          </a>
+        </div>
+      </div>
+
+      <article class="cs-doc" data-doc>
+        <div class="cs-doc__loading" data-loading>Loading…</div>
+      </article>
+    </section>
+
+  </div><!-- /panel · cheatsheets -->
 
   <!-- Footer -->
   <footer class="foot">
@@ -2114,6 +2514,399 @@
         });
       });
     });
+  })();
+
+  /* ===================================================================
+     Tabs + Cheat Sheet reader
+     =================================================================== */
+  (function () {
+    var tabBtns = Array.prototype.slice.call(document.querySelectorAll('.tabs__btn'));
+    var panels = {
+      course: document.querySelector('[data-panel="course"]'),
+      cheatsheets: document.querySelector('[data-panel="cheatsheets"]')
+    };
+    if (!tabBtns.length || !panels.course || !panels.cheatsheets) return;
+
+    var indexView = panels.cheatsheets.querySelector('[data-view="index"]');
+    var readerView = panels.cheatsheets.querySelector('[data-view="reader"]');
+    var docEl = panels.cheatsheets.querySelector('[data-doc]');
+    var counterEl = panels.cheatsheets.querySelector('[data-counter]');
+    var downloadEl = panels.cheatsheets.querySelector('[data-action="download"]');
+    var prevBtn = panels.cheatsheets.querySelector('[data-action="prev"]');
+    var nextBtn = panels.cheatsheets.querySelector('[data-action="next"]');
+    var printBtn = panels.cheatsheets.querySelector('[data-action="print"]');
+    var backBtn = panels.cheatsheets.querySelector('[data-action="back"]');
+    var sheetCards = Array.prototype.slice.call(panels.cheatsheets.querySelectorAll('.cs-card'));
+
+    var sheetIndex = sheetCards.map(function (c) {
+      return {
+        slug: c.dataset.sheet,
+        num: c.dataset.num,
+        pair: c.dataset.pair,
+        title: c.dataset.title
+      };
+    });
+
+    function setTab(name, push) {
+      tabBtns.forEach(function (b) {
+        var on = b.dataset.tab === name;
+        b.classList.toggle('tabs__btn--active', on);
+        b.setAttribute('aria-selected', on ? 'true' : 'false');
+      });
+      Object.keys(panels).forEach(function (k) {
+        if (k === name) panels[k].removeAttribute('hidden');
+        else panels[k].setAttribute('hidden', '');
+      });
+      if (push !== false) {
+        var hash = name === 'course' ? '' : '#cheatsheets';
+        if (location.hash !== hash) history.replaceState(null, '', hash || location.pathname);
+      }
+      window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
+    }
+
+    tabBtns.forEach(function (b) {
+      b.addEventListener('click', function () {
+        var name = b.dataset.tab;
+        if (name === 'cheatsheets') showIndex(true);
+        else setTab('course', true);
+      });
+    });
+
+    function showIndex(push) {
+      readerView.setAttribute('hidden', '');
+      indexView.removeAttribute('hidden');
+      setTab('cheatsheets', false);
+      if (push !== false) history.replaceState(null, '', '#cheatsheets');
+    }
+
+    function showReader(slug) {
+      var i = sheetIndex.findIndex(function (s) { return s.slug === slug; });
+      if (i < 0) return;
+      var meta = sheetIndex[i];
+      indexView.setAttribute('hidden', '');
+      readerView.removeAttribute('hidden');
+      setTab('cheatsheets', false);
+      counterEl.textContent = meta.num + ' / 14';
+      downloadEl.setAttribute('href', 'cheatsheets/' + meta.slug + '.txt');
+      downloadEl.setAttribute('download', meta.slug + '.txt');
+      prevBtn.disabled = i === 0;
+      nextBtn.disabled = i === sheetIndex.length - 1;
+      docEl.innerHTML = '<div class="cs-doc__loading">Loading…</div>';
+      window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
+      history.replaceState(null, '', '#cheatsheets/' + meta.slug);
+
+      fetch('cheatsheets/' + meta.slug + '.txt', { cache: 'no-cache' })
+        .then(function (r) {
+          if (!r.ok) throw new Error('HTTP ' + r.status);
+          return r.text();
+        })
+        .then(function (txt) { renderSheet(txt, meta); })
+        .catch(function () {
+          docEl.innerHTML = '<div class="cs-doc__loading">Couldn’t load this sheet. Try the download link.</div>';
+        });
+    }
+
+    sheetCards.forEach(function (c) {
+      c.addEventListener('click', function () { showReader(c.dataset.sheet); });
+    });
+    backBtn.addEventListener('click', function () { showIndex(true); });
+    prevBtn.addEventListener('click', function () {
+      var slug = downloadEl.getAttribute('download').replace(/\.txt$/, '');
+      var i = sheetIndex.findIndex(function (s) { return s.slug === slug; });
+      if (i > 0) showReader(sheetIndex[i - 1].slug);
+    });
+    nextBtn.addEventListener('click', function () {
+      var slug = downloadEl.getAttribute('download').replace(/\.txt$/, '');
+      var i = sheetIndex.findIndex(function (s) { return s.slug === slug; });
+      if (i < sheetIndex.length - 1) showReader(sheetIndex[i + 1].slug);
+    });
+    printBtn.addEventListener('click', function () { window.print(); });
+
+    /* ---------- Parser ---------- */
+    function isRule(line) { return /^\s*([=\-]{4,})\s*$/.test(line); }
+    function isAllCaps(s) {
+      var t = s.trim();
+      if (t.length < 3) return false;
+      if (!/[A-Z]/.test(t)) return false;
+      return t === t.toUpperCase() && /^[A-Z0-9 .,'’\-\/&():?!"]+$/.test(t);
+    }
+    function indentOf(line) {
+      var m = line.match(/^(\s*)/);
+      return m ? m[1].length : 0;
+    }
+
+    function parseSheet(raw) {
+      var lines = raw.replace(/\r\n/g, '\n').split('\n');
+      // Trim trailing blanks
+      while (lines.length && lines[lines.length - 1].trim() === '') lines.pop();
+
+      // Header block: between first === and second ===
+      var i = 0;
+      while (i < lines.length && lines[i].trim() === '') i++;
+      // skip opening rule
+      if (i < lines.length && isRule(lines[i])) i++;
+      var titleLine = '';
+      var subLine = '';
+      while (i < lines.length && !isRule(lines[i])) {
+        var t = lines[i].trim();
+        if (t) {
+          if (!titleLine) titleLine = t;
+          else if (!subLine) subLine = t;
+        }
+        i++;
+      }
+      if (i < lines.length && isRule(lines[i])) i++; // skip closing header rule
+
+      // Strip trailing closing rule
+      var bodyEnd = lines.length;
+      while (bodyEnd > i && (lines[bodyEnd - 1].trim() === '' || isRule(lines[bodyEnd - 1]))) bodyEnd--;
+      var body = lines.slice(i, bodyEnd);
+
+      // Convert title/sub into nice form
+      // titleLine looks like: CHEAT SHEET 01 - HOW LLMs ACTUALLY WORK
+      var num = '';
+      var titleText = titleLine;
+      var m = titleLine.match(/^CHEAT SHEET\s+(\d+)\s*[\-–]\s*(.+)$/i);
+      if (m) { num = m[1]; titleText = m[2]; }
+      titleText = humanCase(titleText);
+
+      // Walk body, collecting blocks
+      var blocks = [];
+      var k = 0;
+      while (k < body.length) {
+        var line = body[k];
+        // Skip --- rules; treat them as section dividers (informational)
+        if (isRule(line)) { k++; continue; }
+        // Blank line
+        if (line.trim() === '') { k++; continue; }
+
+        // Top-level section heading: ALL CAPS at column 0
+        if (indentOf(line) === 0 && isAllCaps(line)) {
+          blocks.push({ kind: 'h2', text: line.trim() });
+          k++;
+          continue;
+        }
+
+        // Top-level numbered heading: "1. ANCHOR THE ROLE" at column 0
+        var nm = line.match(/^(\d+)\.\s+(.+)$/);
+        if (nm && indentOf(line) === 0 && isAllCaps(nm[2])) {
+          blocks.push({ kind: 'h3', num: nm[1], text: nm[2].trim() });
+          k++;
+          continue;
+        }
+
+        // Indented numbered item that's also an inline header:
+        // "  1. MATERIAL NON-PUBLIC INFORMATION (MNPI)" + indented body
+        var nim = line.match(/^(\s+)(\d+)\.\s+(.+)$/);
+        if (nim && isAllCaps(nim[3])) {
+          // Treat as h3 with body lines following at deeper indent
+          blocks.push({ kind: 'h3', num: nim[2], text: nim[3].trim() });
+          k++;
+          // Slurp the deeper-indented body as a paragraph
+          var bodyParts = [];
+          while (k < body.length && body[k].trim() !== '' && indentOf(body[k]) > nim[1].length) {
+            bodyParts.push(body[k].trim());
+            k++;
+          }
+          if (bodyParts.length) blocks.push({ kind: 'p', text: bodyParts.join(' ') });
+          continue;
+        }
+
+        // Indented bullet
+        var bm = line.match(/^\s+-\s+(.+)$/);
+        if (bm) {
+          var items = [];
+          while (k < body.length && /^\s+-\s+/.test(body[k])) {
+            var first = body[k].match(/^\s+-\s+(.+)$/)[1].trim();
+            var lead = body[k].match(/^(\s+)-/)[1].length + 2;
+            k++;
+            // Continuation lines indented past the bullet
+            while (k < body.length && body[k].trim() !== '' && indentOf(body[k]) >= lead && !/^\s+[-\d\[]/.test(body[k])) {
+              first += ' ' + body[k].trim();
+              k++;
+            }
+            items.push(first);
+          }
+          blocks.push({ kind: 'ul', items: items });
+          continue;
+        }
+
+        // Indented checkbox
+        var cm = line.match(/^\s+\[[ xX]\]\s+(.+)$/);
+        if (cm) {
+          var citems = [];
+          while (k < body.length && /^\s+\[[ xX]\]\s+/.test(body[k])) {
+            citems.push(body[k].match(/^\s+\[[ xX]\]\s+(.+)$/)[1].trim());
+            k++;
+          }
+          blocks.push({ kind: 'check', items: citems });
+          continue;
+        }
+
+        // Indented numbered list (like "1. Ask: did Claude...")
+        var lm = line.match(/^\s+(\d+)\.\s+(.+)$/);
+        if (lm && !isAllCaps(lm[2])) {
+          var nitems = [];
+          while (k < body.length) {
+            var lm2 = body[k].match(/^\s+(\d+)\.\s+(.+)$/);
+            if (!lm2 || isAllCaps(lm2[2])) break;
+            var ntext = lm2[2].trim();
+            var nlead = body[k].match(/^(\s+)/)[1].length + 4;
+            k++;
+            while (k < body.length && body[k].trim() !== '' && indentOf(body[k]) >= nlead && !/^\s+[-\d\[]/.test(body[k])) {
+              ntext += ' ' + body[k].trim();
+              k++;
+            }
+            nitems.push(ntext);
+          }
+          blocks.push({ kind: 'ol', items: nitems });
+          continue;
+        }
+
+        // Definition-list rows: "Web search ............. ON"
+        var dm = line.match(/^\s+(.+?)\s*\.{3,}\s*(.+?)\s*$/);
+        if (dm) {
+          var rows = [];
+          while (k < body.length) {
+            var dm2 = body[k].match(/^\s+(.+?)\s*\.{3,}\s*(.+?)\s*$/);
+            if (!dm2) {
+              // continuation parenthesis line under previous value
+              if (rows.length && /^\s+\(.+\)\s*$/.test(body[k])) {
+                rows[rows.length - 1].value += ' ' + body[k].trim();
+                k++;
+                continue;
+              }
+              // continuation indented value (e.g., "                                           (revisit after 30 days)")
+              if (rows.length && body[k].trim() !== '' && indentOf(body[k]) >= 8 && !isAllCaps(body[k])) {
+                rows[rows.length - 1].value += ' ' + body[k].trim();
+                k++;
+                continue;
+              }
+              break;
+            }
+            rows.push({ key: dm2[1].trim(), value: dm2[2].trim() });
+            k++;
+          }
+          blocks.push({ kind: 'dl', rows: rows });
+          continue;
+        }
+
+        // Quoted prose block — starts with `"` (multi-line until closing `"`)
+        if (/^\s+"/.test(line)) {
+          var qLines = [];
+          var qIndent = indentOf(line);
+          while (k < body.length && body[k].trim() !== '' && indentOf(body[k]) >= qIndent - 2) {
+            qLines.push(body[k].replace(new RegExp('^\\s{0,' + qIndent + '}'), ''));
+            if (/"\s*$/.test(body[k]) && qLines.length > 1) { k++; break; }
+            k++;
+          }
+          blocks.push({ kind: 'quote', text: qLines.join('\n') });
+          continue;
+        }
+
+        // Default: indented prose paragraph (concat consecutive prose lines)
+        if (indentOf(line) > 0) {
+          var pLines = [line.trim()];
+          k++;
+          while (k < body.length && body[k].trim() !== '' && indentOf(body[k]) > 0) {
+            // Stop on a recognized special-line pattern
+            var nxt = body[k];
+            if (/^\s+-\s+/.test(nxt)) break;
+            if (/^\s+\[[ xX]\]\s+/.test(nxt)) break;
+            if (/^\s+\d+\.\s+/.test(nxt)) break;
+            if (/\.{3,}/.test(nxt)) break;
+            pLines.push(nxt.trim());
+            k++;
+          }
+          blocks.push({ kind: 'p', text: pLines.join(' ') });
+          continue;
+        }
+
+        // Unhandled — emit as paragraph
+        blocks.push({ kind: 'p', text: line.trim() });
+        k++;
+      }
+
+      return { num: num, title: titleText, sub: subLine, blocks: blocks };
+    }
+
+    function humanCase(s) {
+      // Title-case a phrase that may be ALL CAPS, preserving things like "LLMs", "PE", "M365"
+      if (!s) return s;
+      // If already mixed-case (has at least one lowercase), leave it alone
+      if (/[a-z]/.test(s)) return s;
+      var keep = { 'LLMS': 'LLMs', 'PE': 'PE', 'M365': 'M365', 'AI': 'AI', 'IT': 'IT', 'API': 'API', 'MD': 'md', 'MNPI': 'MNPI', 'LP': 'LP' };
+      return s.toLowerCase().replace(/\b([a-z])([a-z]*)\b/g, function (_, a, b) {
+        var word = (a + b).toUpperCase();
+        if (keep[word]) return keep[word];
+        return a.toUpperCase() + b;
+      });
+    }
+
+    function escapeHtml(s) {
+      return String(s)
+        .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+    }
+    function inlineFmt(s) {
+      // Mild prettifying: ASCII -> -> arrow, "--" -> em-dash, smart quotes
+      return escapeHtml(s)
+        .replace(/--&gt;/g, '→')
+        .replace(/-&gt;/g, '→')
+        .replace(/\s--\s/g, ' — ')
+        .replace(/\b(\w)'(\w)/g, '$1’$2');
+    }
+
+    function renderSheet(raw, meta) {
+      var parsed = parseSheet(raw);
+      var html = '';
+      html += '<div class="cs-doc__eyebrow">';
+      html += '<strong>Cheat Sheet ' + escapeHtml(meta.num) + '</strong>';
+      html += '<span class="cs-doc__eyebrow-rule"></span>';
+      html += '<span>' + escapeHtml(meta.pair) + '</span>';
+      html += '</div>';
+      html += '<h1 class="cs-doc__title">' + escapeHtml(parsed.title || meta.title) + '</h1>';
+      if (parsed.sub) html += '<p class="cs-doc__sub">' + escapeHtml(parsed.sub) + '</p>';
+
+      parsed.blocks.forEach(function (b) {
+        if (b.kind === 'h2') {
+          html += '<h2>' + inlineFmt(b.text) + '</h2>';
+        } else if (b.kind === 'h3') {
+          html += '<h3>';
+          if (b.num) html += '<span class="cs-doc__num">' + escapeHtml(b.num) + '.</span>';
+          html += '<span>' + inlineFmt(humanCase(b.text)) + '</span></h3>';
+        } else if (b.kind === 'p') {
+          html += '<p>' + inlineFmt(b.text) + '</p>';
+        } else if (b.kind === 'ul') {
+          html += '<ul>' + b.items.map(function (i) { return '<li>' + inlineFmt(i) + '</li>'; }).join('') + '</ul>';
+        } else if (b.kind === 'ol') {
+          html += '<ol>' + b.items.map(function (i) { return '<li>' + inlineFmt(i) + '</li>'; }).join('') + '</ol>';
+        } else if (b.kind === 'check') {
+          html += '<ul class="cs-doc--check">' + b.items.map(function (i) { return '<li>' + inlineFmt(i) + '</li>'; }).join('') + '</ul>';
+        } else if (b.kind === 'dl') {
+          html += '<dl>' + b.rows.map(function (r) {
+            return '<dt>' + inlineFmt(r.key) + '</dt><dd>' + inlineFmt(r.value) + '</dd>';
+          }).join('') + '</dl>';
+        } else if (b.kind === 'quote') {
+          html += '<pre class="cs-doc__quote">' + escapeHtml(b.text) + '</pre>';
+        }
+      });
+
+      docEl.innerHTML = html;
+    }
+
+    /* ---------- Initial route ---------- */
+    function applyHash() {
+      var h = location.hash.replace(/^#/, '');
+      if (!h) { setTab('course', false); return; }
+      if (h === 'cheatsheets') { showIndex(false); return; }
+      var m = h.match(/^cheatsheets\/(.+)$/);
+      if (m) { showReader(m[1]); return; }
+      // Default unknown -> course
+      setTab('course', false);
+    }
+    window.addEventListener('hashchange', applyHash);
+    applyHash();
   })();
 </script>
 
