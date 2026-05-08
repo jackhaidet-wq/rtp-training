@@ -834,12 +834,9 @@
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
   }
 
-  /* ---------- Utility bar (zoom + preferences flag) ---------- */
+  /* ---------- Utility bar (zoom + preferences flag, in topbar) ---------- */
   .utility-bar {
-    position: fixed;
-    top: 24px;
-    right: 24px;
-    z-index: 100;
+    position: relative;
     display: flex;
     align-items: center;
     gap: 8px;
@@ -909,9 +906,9 @@
   .flag-btn svg { width: 18px; height: 18px; }
 
   .prefs-panel {
-    position: fixed;
-    top: 76px;
-    right: 24px;
+    position: absolute;
+    top: calc(100% + 12px);
+    right: 0;
     z-index: 99;
     min-width: 260px;
     padding: 18px;
@@ -977,11 +974,14 @@
   html[data-theme="slate"] .prefs-row__label { color: #c8ccd6; }
 
   @media (max-width: 760px) {
-    .utility-bar { top: 16px; right: 16px; gap: 6px; }
-    .flag-btn { width: 36px; height: 36px; }
+    .utility-bar { gap: 6px; }
+    .flag-btn { width: 34px; height: 34px; }
     .zoom-btn { width: 26px; height: 26px; font-size: 16px; }
     .zoom-readout { display: none; }
-    .prefs-panel { top: 60px; right: 16px; left: 16px; min-width: 0; }
+    .prefs-panel { right: 0; min-width: 220px; }
+  }
+  @media (max-width: 520px) {
+    .topbar__divider, .topbar__co { display: none; }
   }
 
   /* ---------- Slate theme (glass + tint) ---------- */
@@ -1169,36 +1169,6 @@
 <div class="bg-smoke bg-smoke--a" aria-hidden="true"></div>
 <div class="bg-smoke bg-smoke--b" aria-hidden="true"></div>
 
-<div class="utility-bar" aria-label="Page utilities">
-  <div class="zoom-ctrl" role="group" aria-label="Zoom">
-    <button class="zoom-btn" type="button" data-zoom="out" aria-label="Zoom out">&minus;</button>
-    <span class="zoom-readout" id="zoom-readout" aria-live="polite">100%</span>
-    <button class="zoom-btn" type="button" data-zoom="in" aria-label="Zoom in">+</button>
-  </div>
-  <button id="flag-btn" class="flag-btn" type="button" aria-label="Preferences" aria-expanded="false" aria-controls="prefs-panel">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-      <path d="M5 21V3"/>
-      <path d="M5 4h13l-2.2 4 2.2 4H5"/>
-    </svg>
-  </button>
-</div>
-<div id="prefs-panel" class="prefs-panel" role="dialog" aria-label="Preferences">
-  <div class="prefs-row">
-    <span class="prefs-row__label">Background</span>
-    <div class="pill-toggle" data-pill="bg" role="radiogroup" aria-label="Background style">
-      <button type="button" class="pill-toggle__btn" data-value="smoke" role="radio" aria-checked="true">Smoke</button>
-      <button type="button" class="pill-toggle__btn" data-value="slate" role="radio" aria-checked="false">Slate</button>
-    </div>
-  </div>
-  <div class="prefs-row">
-    <span class="prefs-row__label">Font</span>
-    <div class="pill-toggle" data-pill="font" role="radiogroup" aria-label="Font style">
-      <button type="button" class="pill-toggle__btn" data-value="native" role="radio" aria-checked="true">Native</button>
-      <button type="button" class="pill-toggle__btn" data-value="dyslexic" role="radio" aria-checked="false">Dyslexic</button>
-    </div>
-  </div>
-</div>
-
 <main class="page">
 
   <!-- Top bar -->
@@ -1206,11 +1176,36 @@
     <div class="topbar__brand">
       <img class="topbar__logo" src="assets/ar-horizontal-navy.png" alt="AnswerRocket" />
       <span class="topbar__divider"></span>
-      <span class="topbar__co">RTP&nbsp;Training</span>
+      <span class="topbar__co">Resurgens&nbsp;Technology&nbsp;Partners</span>
     </div>
-    <div class="topbar__meta">
-      <span><strong>11</strong>&nbsp;steps</span>
-      <span>Updated&nbsp;<strong>May&nbsp;2026</strong></span>
+    <div class="utility-bar" aria-label="Page utilities">
+      <div class="zoom-ctrl" role="group" aria-label="Zoom">
+        <button class="zoom-btn" type="button" data-zoom="out" aria-label="Zoom out">&minus;</button>
+        <span class="zoom-readout" id="zoom-readout" aria-live="polite">100%</span>
+        <button class="zoom-btn" type="button" data-zoom="in" aria-label="Zoom in">+</button>
+      </div>
+      <button id="flag-btn" class="flag-btn" type="button" aria-label="Preferences" aria-expanded="false" aria-controls="prefs-panel">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M5 21V3"/>
+          <path d="M5 4h13l-2.2 4 2.2 4H5"/>
+        </svg>
+      </button>
+      <div id="prefs-panel" class="prefs-panel" role="dialog" aria-label="Preferences">
+        <div class="prefs-row">
+          <span class="prefs-row__label">Background</span>
+          <div class="pill-toggle" data-pill="bg" role="radiogroup" aria-label="Background style">
+            <button type="button" class="pill-toggle__btn" data-value="smoke" role="radio" aria-checked="true">Smoke</button>
+            <button type="button" class="pill-toggle__btn" data-value="slate" role="radio" aria-checked="false">Slate</button>
+          </div>
+        </div>
+        <div class="prefs-row">
+          <span class="prefs-row__label">Font</span>
+          <div class="pill-toggle" data-pill="font" role="radiogroup" aria-label="Font style">
+            <button type="button" class="pill-toggle__btn" data-value="native" role="radio" aria-checked="true">Native</button>
+            <button type="button" class="pill-toggle__btn" data-value="dyslexic" role="radio" aria-checked="false">Dyslexic</button>
+          </div>
+        </div>
+      </div>
     </div>
   </header>
 
