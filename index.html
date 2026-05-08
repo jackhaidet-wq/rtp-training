@@ -163,21 +163,21 @@
     font-style: normal;
     background: linear-gradient(90deg,
       #ff4500 0%,
-      #ff2e6e 18%,
+      #ff2e6e 17%,
       #b21e8a 33%,
       #7f3399 50%,
       #1a1ad1 67%,
-      #7f3399 82%,
+      #7f3399 83%,
       #ff4500 100%);
-    background-size: 400% 100%;
+    background-size: 200% 100%;
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
     animation: claude-shimmer 9s linear infinite;
   }
   @keyframes claude-shimmer {
-    0%   { background-position: 0% 50%; }
-    100% { background-position: -200% 50%; }
+    from { background-position: 0% 50%; }
+    to   { background-position: 200% 50%; }
   }
   @media (prefers-reduced-motion: reduce) {
     .hero__title em { animation: none; }
