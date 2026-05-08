@@ -14,9 +14,9 @@
       if (f === 'dyslexic') {
         document.documentElement.setAttribute('data-font', 'dyslexic');
         var l = document.createElement('link');
-        l.id = 'open-dyslexic-css';
+        l.id = 'dyslexic-font-css';
         l.rel = 'stylesheet';
-        l.href = 'https://cdn.jsdelivr.net/npm/@fontsource/opendyslexic/400.css';
+        l.href = 'https://fonts.googleapis.com/css2?family=Lexend:wght@400;500&display=swap';
         document.head.appendChild(l);
       }
       var z = parseFloat(localStorage.getItem('rtp-zoom') || '1');
@@ -1148,13 +1148,11 @@
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
   }
 
-  /* ---------- Font theme: OpenDyslexic ---------- */
+  /* ---------- Font theme: Lexend (dyslexia-friendly, normal grotesque look) ---------- */
   html[data-font="dyslexic"] {
-    --font-display: "OpenDyslexic", "Comic Sans MS", "Trebuchet MS", sans-serif;
-    --font-body: "OpenDyslexic", "Comic Sans MS", "Trebuchet MS", sans-serif;
+    --font-display: "Lexend", "Hanken Grotesk", system-ui, sans-serif;
+    --font-body: "Lexend", "Hanken Grotesk", system-ui, sans-serif;
   }
-  /* OpenDyslexic glyphs are wider — relax letter spacing on the gradient title */
-  html[data-font="dyslexic"] .hero__title { letter-spacing: -0.01em; }
 
   /* ---------- Print ---------- */
   @media print {
@@ -1599,7 +1597,7 @@
     var name = first.charAt(0).toUpperCase() + first.slice(1);
     if (name.length > 32) name = name.slice(0, 32);
     var el = document.getElementById('hero-eyebrow-text');
-    if (el) el.textContent = 'Welcome aboard, ' + name + ' · Onboarding Track';
+    if (el) el.textContent = 'Welcome aboard, ' + name;
   })();
 
   (function () {
@@ -1749,11 +1747,11 @@
 
   (function () {
     function ensureDyslexicFont() {
-      if (document.getElementById('open-dyslexic-css')) return;
+      if (document.getElementById('dyslexic-font-css')) return;
       var l = document.createElement('link');
-      l.id = 'open-dyslexic-css';
+      l.id = 'dyslexic-font-css';
       l.rel = 'stylesheet';
-      l.href = 'https://cdn.jsdelivr.net/npm/@fontsource/opendyslexic/400.css';
+      l.href = 'https://fonts.googleapis.com/css2?family=Lexend:wght@400;500&display=swap';
       document.head.appendChild(l);
     }
     var configs = {
