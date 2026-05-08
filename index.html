@@ -295,6 +295,92 @@
     .phase__num { font-size: 64px; }
   }
 
+  /* ---------- Progress states (chronological gating) ---------- */
+  .step__check {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 1.5px solid #d8d8dc;
+    background: #fff;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    color: #fff;
+    appearance: none;
+    padding: 0;
+    transition:
+      background var(--dur-fast) var(--ease-out),
+      border-color var(--dur-fast) var(--ease-out),
+      transform var(--dur-fast) var(--ease-out);
+    z-index: 2;
+  }
+  .step__check svg {
+    width: 12px; height: 12px;
+    opacity: 0;
+    transition: opacity var(--dur-fast) var(--ease-out);
+  }
+  .step__check:hover { transform: scale(1.08); border-color: var(--ar-navy); }
+
+  /* states: locked | active | done — locked is the default look */
+  .step[data-state="locked"] {
+    opacity: 0.40;
+    filter: saturate(0.4);
+  }
+  .step[data-state="locked"]:hover {
+    transform: none;
+    box-shadow:
+      4px 4px 0 0 var(--offset-color),
+      0 10px 28px rgba(17, 24, 39, 0.10),
+      0 2px 6px rgba(17, 24, 39, 0.06);
+  }
+  .step[data-state="locked"] .step__cta { pointer-events: none; }
+  .step[data-state="locked"] .step__check {
+    pointer-events: none;
+    border-color: #e5e7eb;
+  }
+
+  .step[data-state="active"] .step__check {
+    border-color: var(--ar-navy);
+  }
+  .step[data-state="done"] .step__check {
+    background: var(--ar-navy);
+    border-color: var(--ar-navy);
+  }
+  .step[data-state="done"] .step__check svg { opacity: 1; }
+  .step[data-state="done"] { opacity: 0.92; }
+
+  .substep[data-state="locked"] {
+    opacity: 0.40;
+    filter: saturate(0.4);
+    pointer-events: none;
+  }
+  .submit[data-state="locked"] {
+    opacity: 0.50;
+    filter: saturate(0.6);
+  }
+  .submit[data-state="locked"] .submit__cta { pointer-events: none; }
+
+  /* slate-mode variants */
+  html[data-theme="slate"] .step__check {
+    background: rgba(43, 48, 59, 0.55);
+    border-color: rgba(255, 255, 255, 0.22);
+    color: #fff;
+  }
+  html[data-theme="slate"] .step[data-state="active"] .step__check {
+    border-color: rgba(255, 255, 255, 0.55);
+  }
+  html[data-theme="slate"] .step[data-state="done"] .step__check {
+    background: #f3f4f6;
+    border-color: #f3f4f6;
+    color: #1a1ad1;
+  }
+  html[data-theme="slate"] .step[data-state="locked"] .step__check {
+    border-color: rgba(255, 255, 255, 0.10);
+  }
+
   /* ---------- Step list ---------- */
   .steps {
     display: flex;
@@ -1417,6 +1503,73 @@
     if (name.length > 32) name = name.slice(0, 32);
     var el = document.getElementById('hero-eyebrow-text');
     if (el) el.textContent = 'Welcome aboard, ' + name + ' · Onboarding Track';
+  })();
+
+  (function () {
+    var TOTAL = 10;
+    var CHECK_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+    var steps = Array.prototype.slice.call(document.querySelectorAll('article.step'));
+    if (!steps.length) return;
+    steps.forEach(function (s, i) {
+      var n = i + 1;
+      s.dataset.step = String(n);
+      var btn = document.createElement('button');
+      btn.className = 'step__check';
+      btn.type = 'button';
+      btn.setAttribute('aria-label', 'Mark step ' + n + ' complete');
+      btn.innerHTML = CHECK_SVG;
+      s.insertBefore(btn, s.firstChild);
+    });
+    document.querySelectorAll('.substep').forEach(function (sub) {
+      var prev = sub.previousElementSibling;
+      while (prev && !prev.classList.contains('step')) prev = prev.previousElementSibling;
+      if (prev && prev.dataset.step) sub.dataset.substepOf = prev.dataset.step;
+    });
+    var submit = document.querySelector('.submit');
+
+    function read() {
+      try {
+        var v = parseInt(localStorage.getItem('rtp-progress') || '0', 10);
+        if (isNaN(v)) return 0;
+        return Math.max(0, Math.min(TOTAL, v));
+      } catch (e) { return 0; }
+    }
+    function write(n) {
+      try { localStorage.setItem('rtp-progress', String(n)); } catch (e) {}
+    }
+    function render(done) {
+      var active = done + 1;
+      steps.forEach(function (s) {
+        var n = parseInt(s.dataset.step, 10);
+        s.dataset.state = n <= done ? 'done' : (n === active ? 'active' : 'locked');
+      });
+      document.querySelectorAll('.substep[data-substep-of]').forEach(function (sub) {
+        var n = parseInt(sub.dataset.substepOf, 10);
+        sub.dataset.state = (n <= done || n === active) ? 'active' : 'locked';
+      });
+      if (submit) submit.dataset.state = done >= TOTAL ? 'active' : 'locked';
+    }
+
+    var done = read();
+    render(done);
+
+    document.addEventListener('click', function (e) {
+      var btn = e.target.closest && e.target.closest('.step__check');
+      if (!btn) return;
+      var step = btn.closest('.step');
+      if (!step) return;
+      var n = parseInt(step.dataset.step, 10);
+      var state = step.dataset.state;
+      if (state === 'active') {
+        done = n;
+        write(done);
+        render(done);
+      } else if (state === 'done' && n === done) {
+        done = n - 1;
+        write(done);
+        render(done);
+      }
+    });
   })();
 
   (function () {
