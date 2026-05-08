@@ -1,0 +1,1003 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RTP Training Course · Claude Onboarding</title>
+<link rel="stylesheet" href="colors_and_type.css" />
+<style>
+  /* ============================================================
+     RTP Training Course — overview page
+     ============================================================ */
+  :root {
+    --page-max: 1120px;
+    --rule: 1px solid #e7e7ea;
+    --ink-mute: #6b6b70;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--ar-bg);
+    color: var(--ar-ink);
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.6;
+  }
+
+  a { color: inherit; }
+
+  /* ---------- Page chrome ---------- */
+  .page {
+    max-width: var(--page-max);
+    margin: 0 auto;
+    padding: 32px 56px 120px;
+  }
+  @media (max-width: 760px) {
+    .page { padding: 24px 22px 80px; }
+  }
+
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 22px;
+    border-bottom: var(--rule);
+  }
+  .topbar__brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-family: var(--font-display);
+    font-weight: 500;
+    color: var(--ar-ink);
+  }
+  .topbar__logo { height: 22px; width: auto; display: block; }
+  .topbar__divider {
+    width: 1px; height: 18px; background: #c8c8cf;
+  }
+  .topbar__co {
+    font-family: var(--font-display);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: var(--ar-ink-2);
+  }
+  .topbar__meta {
+    display: flex; gap: 28px;
+    font-family: var(--font-display);
+    font-size: 13px;
+    color: var(--ar-ink-5);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .topbar__meta strong { color: var(--ar-ink); font-weight: 500; }
+  @media (max-width: 760px) {
+    .topbar__meta { display: none; }
+  }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    padding: 72px 0 40px;
+    border-bottom: var(--rule);
+    position: relative;
+  }
+  .hero__eyebrow {
+    font-family: var(--font-display);
+    font-size: 13px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ar-navy);
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+  .hero__eyebrow::before {
+    content: "";
+    width: 32px; height: 2px;
+    background: var(--gradient-brand);
+  }
+  .hero__title {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(48px, 7vw, 84px);
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+    margin: 0 0 28px;
+    color: var(--ar-ink);
+  }
+  .hero__title em {
+    font-style: normal;
+    background: var(--gradient-brand-diagonal);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .hero__lede {
+    font-family: var(--font-body);
+    font-size: 20px;
+    line-height: 1.55;
+    color: var(--ar-ink-2);
+    max-width: 720px;
+    margin: 0 0 32px;
+  }
+
+  .hero__stats {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0;
+    border-top: var(--rule);
+    border-bottom: var(--rule);
+  }
+  .hero__stat {
+    padding: 22px 24px;
+    border-right: var(--rule);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 96px;
+  }
+  .hero__stat:first-child { padding-left: 0; }
+  .hero__stat:last-child { border-right: none; padding-right: 0; }
+  .hero__stat-label {
+    font-family: var(--font-display);
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ar-ink-5);
+    margin: 0;
+    line-height: 1.2;
+  }
+  .hero__stat-value {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 28px;
+    color: var(--ar-ink);
+    line-height: 1;
+    margin: 0;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.01em;
+  }
+  @media (max-width: 760px) {
+    .hero { padding: 56px 0 44px; }
+    .hero__stats { grid-template-columns: repeat(2, 1fr); }
+    .hero__stat { padding: 18px 16px 18px 0; }
+    .hero__stat:nth-child(2) { border-right: none; padding-right: 0; }
+    .hero__stat:nth-child(1), .hero__stat:nth-child(2) { border-bottom: var(--rule); }
+  }
+
+  /* ---------- Phase ---------- */
+  .phase {
+    padding-top: 56px;
+  }
+  .phase__head {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    gap: 32px;
+    align-items: baseline;
+    margin-bottom: 36px;
+  }
+  .phase__num {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 92px;
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    background: var(--gradient-brand-diagonal);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .phase__title {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 30px;
+    letter-spacing: -0.01em;
+    color: var(--ar-ink);
+    margin: 0 0 6px;
+  }
+  .phase__sub {
+    font-family: var(--font-body);
+    font-size: 16px;
+    color: var(--ar-ink-2);
+    margin: 0;
+    max-width: 620px;
+  }
+  @media (max-width: 760px) {
+    .phase { padding-top: 40px; }
+    .phase__head { grid-template-columns: 1fr; gap: 8px; }
+    .phase__num { font-size: 64px; }
+  }
+
+  /* ---------- Step list ---------- */
+  .steps {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-left: 162px;
+  }
+  @media (max-width: 760px) {
+    .steps { margin-left: 0; }
+  }
+
+  .step {
+    --offset-color: var(--ar-navy);
+    background: #fff;
+    border: 1px solid #ebebef;
+    border-radius: 18px;
+    padding: 26px 28px 26px 28px;
+    display: grid;
+    grid-template-columns: 56px 1fr auto;
+    gap: 24px;
+    align-items: flex-start;
+    box-shadow: 4px 4px 0 0 var(--offset-color);
+    transition:
+      transform var(--dur-base) var(--ease-out),
+      box-shadow var(--dur-base) var(--ease-out),
+      border-color var(--dur-base) var(--ease-out);
+    position: relative;
+  }
+  .step:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 0 var(--offset-color);
+  }
+  .step:nth-of-type(2n) { --offset-color: var(--ar-orange); }
+  .step:nth-of-type(3n) { --offset-color: var(--ar-purple); }
+
+  .step__num {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 1;
+    letter-spacing: -0.01em;
+    color: var(--ar-ink);
+    padding-top: 4px;
+    font-variant-numeric: tabular-nums;
+    position: relative;
+  }
+  .step__num::after {
+    content: "";
+    position: absolute;
+    left: 0; bottom: -8px;
+    width: 22px; height: 2px;
+    background: var(--offset-color);
+  }
+
+  .step__body { min-width: 0; }
+  .step__title {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    color: var(--ar-ink);
+    margin: 0 0 6px;
+  }
+  .step__desc {
+    font-family: var(--font-body);
+    font-size: 15.5px;
+    line-height: 1.55;
+    color: var(--ar-ink-2);
+    margin: 0;
+  }
+  .step__tags {
+    margin-top: 14px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .tag {
+    font-family: var(--font-display);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ar-ink-5);
+    background: #f3f3f5;
+    padding: 5px 10px;
+    border-radius: 999px;
+  }
+  .tag--cert {
+    background: #f1edff;
+    color: #4a2db2;
+  }
+  .tag--video {
+    background: #ffe9e1;
+    color: #b9381b;
+  }
+  .tag--account {
+    background: #e6e9ff;
+    color: var(--ar-navy);
+  }
+  .tag--time {
+    background: transparent;
+    color: var(--ar-ink-5);
+    padding-left: 0;
+  }
+  .tag--optional {
+    background: #fff5e1;
+    color: #8a5a00;
+  }
+
+  .step__hint {
+    margin: 12px 0 0;
+    padding: 10px 14px;
+    background: #fff8ee;
+    border: 1px solid #f3e3c2;
+    border-left: 3px solid #ff663a;
+    border-radius: 8px;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    font-size: 14.5px;
+    line-height: 1.5;
+    color: #6e4a12;
+  }
+  .step__hint svg {
+    width: 16px; height: 16px;
+    flex: 0 0 auto;
+    margin-top: 2px;
+    color: #ff663a;
+  }
+  .step__hint strong { color: #4a3208; font-weight: 500; }
+
+  .step__cta {
+    align-self: center;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ar-navy);
+    text-decoration: none;
+    padding: 12px 18px;
+    border: 1.5px solid var(--ar-navy);
+    border-radius: 999px;
+    transition: background var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out);
+    white-space: nowrap;
+  }
+  .step__cta:hover {
+    background: var(--ar-navy);
+    color: #fff;
+  }
+  .step__cta svg { width: 14px; height: 14px; }
+
+  .step__cta--ghost {
+    border-color: #d8d8dc;
+    color: var(--ar-ink-2);
+    cursor: default;
+  }
+  .step__cta--ghost:hover {
+    background: transparent;
+    color: var(--ar-ink-2);
+    border-color: #d8d8dc;
+  }
+
+  @media (max-width: 760px) {
+    .step {
+      grid-template-columns: 44px 1fr;
+      padding: 22px 20px;
+      gap: 16px;
+    }
+    .step__cta {
+      grid-column: 1 / -1;
+      justify-self: start;
+      margin-top: 10px;
+      padding: 10px 14px;
+      font-size: 13px;
+    }
+    .step__title { font-size: 19px; }
+    .step__num { font-size: 24px; }
+  }
+
+  /* Sub-card (Save Certificate) — visually attached to previous step */
+  .substep {
+    margin-left: 200px;
+    margin-top: -6px;
+    background: #fff;
+    border: 1px dashed #cfd0d8;
+    border-radius: 14px;
+    padding: 18px 22px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    box-shadow: none;
+    position: relative;
+  }
+  .substep::before {
+    content: "";
+    position: absolute;
+    left: -22px; top: 50%;
+    width: 22px; height: 1px;
+    background: #cfd0d8;
+  }
+  .substep__icon {
+    flex: 0 0 auto;
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: var(--gradient-brand-diagonal);
+    display: grid;
+    place-items: center;
+    color: #fff;
+  }
+  .substep__icon svg { width: 16px; height: 16px; }
+  .substep__title {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 16px;
+    color: var(--ar-ink);
+    margin: 0 0 2px;
+  }
+  .substep__desc {
+    font-size: 14.5px;
+    color: var(--ar-ink-2);
+    margin: 0;
+    line-height: 1.5;
+  }
+  @media (max-width: 760px) {
+    .substep { margin-left: 0; }
+    .substep::before { display: none; }
+  }
+
+  /* ---------- Final submission card ---------- */
+  .submit {
+    margin-top: 72px;
+    margin-left: 0;
+    border-radius: 28px;
+    padding: 56px 56px;
+    color: #fff;
+    background:
+      radial-gradient(circle at 0% 100%, #ff663a 0%, transparent 55%),
+      radial-gradient(circle at 100% 0%, #7f3399 0%, transparent 60%),
+      #000099;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 8px 8px 0 0 var(--ar-orange);
+  }
+  .submit::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 64px; height: 64px;
+    border-top: 3px solid rgba(255,255,255,0.5);
+    border-left: 3px solid rgba(255,255,255,0.5);
+    border-top-left-radius: 28px;
+  }
+  .submit__eyebrow {
+    font-family: var(--font-display);
+    font-size: 13px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.75);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 22px;
+  }
+  .submit__eyebrow::before {
+    content: "";
+    display: inline-block;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: #ff663a;
+    box-shadow: 0 0 0 4px rgba(255,102,58,0.25);
+  }
+  .submit__title {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(34px, 4vw, 50px);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin: 0 0 18px;
+    color: #fff;
+    max-width: 700px;
+  }
+  .submit__lede {
+    font-family: var(--font-body);
+    font-size: 18px;
+    line-height: 1.55;
+    color: rgba(255,255,255,0.82);
+    margin: 0 0 36px;
+    max-width: 620px;
+  }
+  .submit__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    background: #fff;
+    color: var(--ar-navy);
+    padding: 18px 28px;
+    border-radius: 999px;
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 16px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: transform var(--dur-fast) var(--ease-out);
+  }
+  .submit__cta:hover { transform: translateY(-2px); color: var(--ar-navy); }
+  .submit__cta svg { width: 16px; height: 16px; }
+
+  .submit__email {
+    margin-top: 22px;
+    font-family: var(--font-mono);
+    font-size: 14px;
+    color: rgba(255,255,255,0.85);
+    letter-spacing: 0.01em;
+  }
+  .submit__email span {
+    color: rgba(255,255,255,0.55);
+    margin-right: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-family: var(--font-display);
+    font-size: 11px;
+  }
+
+  .submit__checklist {
+    margin-top: 36px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255,255,255,0.18);
+  }
+  .submit__chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.10);
+    border: 1px solid rgba(255,255,255,0.22);
+    font-family: var(--font-display);
+    font-size: 13px;
+    color: #fff;
+    letter-spacing: 0.02em;
+  }
+  .submit__chip svg { width: 12px; height: 12px; opacity: 0.85; }
+
+  @media (max-width: 760px) {
+    .submit { padding: 36px 28px; border-radius: 22px; }
+  }
+
+  /* ---------- Footer ---------- */
+  .foot {
+    margin-top: 80px;
+    padding-top: 28px;
+    border-top: var(--rule);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    font-family: var(--font-display);
+    font-size: 13px;
+    color: var(--ar-ink-5);
+    letter-spacing: 0.04em;
+  }
+  .foot a { color: var(--ar-navy); text-decoration: none; }
+  .foot a:hover { color: var(--ar-orange); }
+
+  /* ---------- Print ---------- */
+  @media print {
+    body { background: #fff; }
+    .step:hover { transform: none; }
+    .submit { box-shadow: none; }
+  }
+</style>
+</head>
+<body>
+
+<main class="page">
+
+  <!-- Top bar -->
+  <header class="topbar">
+    <div class="topbar__brand">
+      <img class="topbar__logo" src="assets/ar-horizontal-navy.png" alt="AnswerRocket" />
+      <span class="topbar__divider"></span>
+      <span class="topbar__co">RTP&nbsp;Training</span>
+    </div>
+    <div class="topbar__meta">
+      <span><strong>~3.5 hrs</strong>&nbsp;total</span>
+      <span><strong>11</strong>&nbsp;steps</span>
+      <span>Updated&nbsp;<strong>May&nbsp;2026</strong></span>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero__eyebrow">Onboarding Track · Claude for Private Equity</div>
+    <h1 class="hero__title">
+      Get started, fast,<br/>with <em>Claude</em>.
+    </h1>
+    <p class="hero__lede">
+      A guided path from first install to first use case — eleven short steps
+      across setup, foundational courses, and applied PE examples. Work through
+      it in order; submit your certificates at the end and you're done.
+    </p>
+
+    <div class="hero__stats">
+      <div class="hero__stat">
+        <div class="hero__stat-label">Steps</div>
+        <div class="hero__stat-value">11</div>
+      </div>
+      <div class="hero__stat">
+        <div class="hero__stat-label">Phases</div>
+        <div class="hero__stat-value">04</div>
+      </div>
+      <div class="hero__stat">
+        <div class="hero__stat-label">Certificates</div>
+        <div class="hero__stat-value">02</div>
+      </div>
+      <div class="hero__stat">
+        <div class="hero__stat-label">Time</div>
+        <div class="hero__stat-value">~3.5 hrs</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       PHASE 01 — Set Up
+       =================================================================== -->
+  <section class="phase">
+    <header class="phase__head">
+      <div class="phase__num">01</div>
+      <div>
+        <h2 class="phase__title">Set up your workspace.</h2>
+        <p class="phase__sub">Install the desktop app and skim the Cowork primer so you know what
+          you're working with before opening a single course.</p>
+      </div>
+    </header>
+
+    <div class="steps">
+
+      <!-- Step 1 -->
+      <article class="step">
+        <div class="step__num">01</div>
+        <div class="step__body">
+          <h3 class="step__title">Download Claude Desktop</h3>
+          <p class="step__desc">
+            Install the desktop app and sign in — or create an account — using
+            your business email. This is the surface you'll work in for the rest
+            of the course.
+          </p>
+          <div class="step__tags">
+            <span class="tag tag--account">Account required</span>
+            <span class="tag tag--time">~5 min</span>
+          </div>
+        </div>
+        <a class="step__cta" href="https://support.claude.com/en/articles/10065433-install-claude-desktop" target="_blank" rel="noopener">
+          Install
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg>
+        </a>
+      </article>
+
+      <!-- Step 2 -->
+      <article class="step">
+        <div class="step__num">02</div>
+        <div class="step__body">
+          <h3 class="step__title">Read the &ldquo;Get Started with Cowork&rdquo; doc</h3>
+          <p class="step__desc">
+            The most important context lives at the top — read from the start
+            through the &ldquo;Examples&rdquo; section. You can stop there.
+          </p>
+          <div class="step__tags">
+            <span class="tag">Reading</span>
+            <span class="tag tag--time">~10 min</span>
+          </div>
+        </div>
+        <a class="step__cta" href="https://support.claude.com/en/articles/13345190-get-started-with-claude-cowork" target="_blank" rel="noopener">
+          Open
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg>
+        </a>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       PHASE 02 — Join Claude Academy
+       =================================================================== -->
+  <section class="phase">
+    <header class="phase__head">
+      <div class="phase__num">02</div>
+      <div>
+        <h2 class="phase__title">Join Claude Academy.</h2>
+        <p class="phase__sub">All coursework lives on Skilljar. Sign up with the same email you used
+          for Claude so your progress and certificates land in one place.</p>
+      </div>
+    </header>
+
+    <div class="steps">
+
+      <!-- Step 3 -->
+      <article class="step">
+        <div class="step__num">03</div>
+        <div class="step__body">
+          <h3 class="step__title">Sign up for Claude Academy &mdash; Skilljar</h3>
+          <p class="step__desc">
+            Use the <strong>same account</strong> you log into Claude with. This
+            keeps your progress and certificates linked to a single identity.
+          </p>
+          <div class="step__tags">
+            <span class="tag tag--account">Account required</span>
+            <span class="tag tag--time">~3 min</span>
+          </div>
+        </div>
+        <a class="step__cta" href="https://accounts.skilljar.com/accounts/signup/?next=%2Fauth%2Fendpoint%2Flogin%2Fresult%3Fnext%3D%252F%26d%3Dcahl60vup5xv&t=3gufixqhei80k&d=cahl60vup5xv" target="_blank" rel="noopener">
+          Sign up
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg>
+        </a>
+      </article>
+
+      <!-- Step 4 -->
+      <article class="step">
+        <div class="step__num">04</div>
+        <div class="step__body">
+          <h3 class="step__title">Open the Courses page</h3>
+          <p class="step__desc">
+            Make sure you're signed in &mdash; you should see your name in the
+            upper-right corner. If not, log in before starting any course.
+          </p>
+          <div class="step__tags">
+            <span class="tag">Verify access</span>
+            <span class="tag tag--time">~1 min</span>
+          </div>
+        </div>
+        <a class="step__cta" href="https://anthropic.skilljar.com/" target="_blank" rel="noopener">
+          Open
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg>
+        </a>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       PHASE 03 — Build Foundations
+       =================================================================== -->
+  <section class="phase">
+    <header class="phase__head">
+      <div class="phase__num">03</div>
+      <div>
+        <h2 class="phase__title">Build the foundations.</h2>
+        <p class="phase__sub">Two structured courses that establish how LLMs behave, where they
+          break, and how to drive Claude effectively. The first sets the mental
+          model; the second earns your first certificate.</p>
+      </div>
+    </header>
+
+    <div class="steps">
+
+      <!-- Step 5 -->
+      <article class="step">
+        <div class="step__num">05</div>
+        <div class="step__body">
+          <h3 class="step__title">Complete &ldquo;Capabilities &amp; Limitations&rdquo;</h3>
+          <p class="step__desc">
+            Foundational knowledge for using LLMs effectively and safely. There
+            is no certificate here &mdash; this is the start of the journey, not
+            a checkbox.
+          </p>
+          <div class="step__tags">
+            <span class="tag">Course</span>
+            <span class="tag tag--time">~30 min</span>
+          </div>
+        </div>
+        <a class="step__cta" href="https://anthropic.skilljar.com/ai-capabilities-and-limitations" target="_blank" rel="noopener">
+          Start
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg>
+        </a>
+      </article>
+
+      <!-- Step 6 -->
+      <article class="step">
+        <div class="step__num">06</div>
+        <div class="step__body">
+          <h3 class="step__title">Complete &ldquo;Claude 101&rdquo;</h3>
+          <p class="step__desc">
+            Register for and complete the lessons <em>and</em> the assessment.
+            This is the first of two certificates you&rsquo;ll need to finish
+            training.
+          </p>
+          <div class="step__tags">
+            <span class="tag tag--cert">Certificate · 1 of 2</span>
+            <span class="tag">Assessment</span>
+            <span class="tag tag--time">~45 min</span>
+          </div>
+        </div>
+        <a class="step__cta" href="https://anthropic.skilljar.com/claude-101" target="_blank" rel="noopener">
+          Start
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg>
+        </a>
+      </article>
+
+      <!-- Sub-step: Save certificate -->
+      <div class="substep">
+        <div class="substep__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        </div>
+        <div>
+          <p class="substep__title">Save your certificate</p>
+          <p class="substep__desc">
+            Download the PDF Skilljar issues at the end of Claude 101 &mdash;
+            you'll need it for the final submission.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       PHASE 04 — Go Deeper
+       =================================================================== -->
+  <section class="phase">
+    <header class="phase__head">
+      <div class="phase__num">04</div>
+      <div>
+        <h2 class="phase__title">Go deeper &amp; apply it.</h2>
+        <p class="phase__sub">Two short videos to widen your sense of what's possible, the second
+          structured course (and second certificate), and a PE-specific use-case
+          walkthrough.</p>
+      </div>
+    </header>
+
+    <div class="steps">
+
+      <!-- Step 7 -->
+      <article class="step">
+        <div class="step__num">07</div>
+        <div class="step__body">
+          <h3 class="step__title">(Starter) Crash Course video</h3>
+          <p class="step__desc">
+            A direct, no-frills overview of the capabilities now at your
+            fingertips. Dig in and enjoy.
+          </p>
+          <div class="step__tags">
+            <span class="tag tag--video">Video</span>
+            <span class="tag tag--time">~15 min</span>
+          </div>
+        </div>
+        <a class="step__cta" href="https://www.youtube.com/watch?v=r2vYObllqJU" target="_blank" rel="noopener">
+          Watch
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 4 20 12 6 20 6 4" fill="currentColor"/></svg>
+        </a>
+      </article>
+
+      <!-- Step 8 -->
+      <article class="step">
+        <div class="step__num">08</div>
+        <div class="step__body">
+          <h3 class="step__title">Advanced overview of Claude Desktop</h3>
+          <p class="step__desc">
+            A deeper tour of the tool you just installed. Some of it will apply
+            directly to you and your business; some won't &mdash; either way,
+            it's a strong primer on using Claude in a custom way.
+          </p>
+          <p class="step__hint">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 2"/></svg>
+            <span><strong>Optional &mdash; tip:</strong> watch at <strong>2&times;</strong> playback. Skim the parts that don&rsquo;t apply to your role.</span>
+          </p>
+          <div class="step__tags">
+            <span class="tag tag--optional">Optional</span>
+            <span class="tag tag--video">Video</span>
+            <span class="tag tag--time">~45 min &middot; ~22 min at 2&times;</span>
+          </div>
+        </div>
+        <a class="step__cta" href="https://www.youtube.com/watch?v=pl90LATQlHI&t=2620s" target="_blank" rel="noopener">
+          Watch
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 4 20 12 6 20 6 4" fill="currentColor"/></svg>
+        </a>
+      </article>
+
+      <!-- Step 9 -->
+      <article class="step">
+        <div class="step__num">09</div>
+        <div class="step__body">
+          <h3 class="step__title">Complete &ldquo;Intro to Claude Cowork&rdquo;</h3>
+          <p class="step__desc">
+            Register for and complete the lessons and the assessment. This is
+            your second &mdash; and final &mdash; certificate.
+          </p>
+          <div class="step__tags">
+            <span class="tag tag--cert">Certificate · 2 of 2</span>
+            <span class="tag">Assessment</span>
+            <span class="tag tag--time">~45 min</span>
+          </div>
+        </div>
+        <a class="step__cta" href="https://anthropic.skilljar.com/introduction-to-claude-cowork" target="_blank" rel="noopener">
+          Start
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg>
+        </a>
+      </article>
+
+      <!-- Sub-step: Save certificate 2 -->
+      <div class="substep">
+        <div class="substep__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        </div>
+        <div>
+          <p class="substep__title">Save your second certificate</p>
+          <p class="substep__desc">
+            Don&rsquo;t forget &mdash; download the Intro to Claude Cowork PDF
+            as soon as you finish the assessment. You&rsquo;ll attach both
+            certificates in the final step.
+          </p>
+        </div>
+      </div>
+
+      <!-- Step 10 -->
+      <article class="step">
+        <div class="step__num">10</div>
+        <div class="step__body">
+          <h3 class="step__title">Review example PE use cases</h3>
+          <p class="step__desc">
+            A short video to get you thinking about simple, concrete
+            applications of AI inside private equity workflows.
+          </p>
+          <div class="step__tags">
+            <span class="tag tag--video">Video</span>
+            <span class="tag">PE-specific</span>
+            <span class="tag tag--time">~10 min</span>
+          </div>
+        </div>
+        <a class="step__cta" href="https://www.youtube.com/watch?v=AY3lif2E4zI" target="_blank" rel="noopener">
+          Watch
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 4 20 12 6 20 6 4" fill="currentColor"/></svg>
+        </a>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       FINAL — Submit certificates
+       =================================================================== -->
+  <section class="submit" id="submit">
+    <div class="submit__eyebrow">Final step · Step 11</div>
+    <h2 class="submit__title">Send your certificates to&nbsp;Will&nbsp;for review.</h2>
+    <p class="submit__lede">
+      Attach both PDFs &mdash; <strong>Claude&nbsp;101</strong> and
+      <strong>Intro&nbsp;to&nbsp;Claude&nbsp;Cowork</strong> &mdash; and email
+      them over. Once Will confirms receipt, your training is complete.
+    </p>
+
+    <a class="submit__cta" href="mailto:will@resurgenstech.com?subject=RTP%20Training%20%E2%80%94%20Certificates%20of%20Completion&body=Hi%20Will%2C%0A%0AAttached%20are%20my%20certificates%20for%20Claude%20101%20and%20Intro%20to%20Claude%20Cowork.%20Training%20complete%20on%20my%20end.%0A%0AThanks%2C">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      Email Will
+    </a>
+
+    <div class="submit__email">
+      <span>To</span>will@resurgenstech.com
+    </div>
+
+    <div class="submit__checklist">
+      <span class="submit__chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        Claude 101 certificate
+      </span>
+      <span class="submit__chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        Intro to Claude Cowork certificate
+      </span>
+      <span class="submit__chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        Subject line includes &ldquo;RTP Training&rdquo;
+      </span>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="foot">
+    <div>RTP Training Course · Onboarding to Claude</div>
+    <div>Questions? <a href="mailto:will@resurgenstech.com">will@resurgenstech.com</a></div>
+  </footer>
+
+</main>
+
+</body>
+</html>

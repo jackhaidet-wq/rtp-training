@@ -1,0 +1,312 @@
+/* ============================================================
+   AnswerRocket — Colors & Type
+   Single source of truth for tokens: colors, gradients, type.
+   ============================================================ */
+
+/* ---------- Webfonts -------------------------------------------------
+   Brand fonts are licensed and must be loaded locally where available:
+     • Neue Alte Grotesk → headings / display
+     • Trade Gothic LT Pro → body
+   Google Fonts substitutes are imported below and wired into the font
+   stacks as fallbacks, so if the licensed files are missing (or slow to
+   load, or not licensed for a given surface) the cascade continues to:
+     • Hanken Grotesk (Neue Alte Grotesk stand-in)
+     • News Cycle    (Trade Gothic LT Pro stand-in)
+   After that the stack falls to system sans-serifs. Slide surfaces use
+   Hanken Grotesk + News Cycle as their *primary* faces (see --font-slide-*).
+   ------------------------------------------------------------------- */
+@import url("https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=News+Cycle:wght@400;700&display=swap");
+
+/* Neue Alte Grotesk — the web heading face (Book / Regular / Medium) */
+@font-face {
+  font-family: "Neue Alte Grotesk";
+  src: url("fonts/1-font.woff") format("woff");
+  font-weight: 300; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Neue Alte Grotesk";
+  src: url("fonts/font.woff") format("woff");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Neue Alte Grotesk";
+  src: url("fonts/2-font.woff") format("woff");
+  font-weight: 500; font-style: normal; font-display: swap;
+}
+
+/* Trade Gothic LT Pro — the web body face */
+@font-face {
+  font-family: "Trade Gothic LT Pro";
+  src: url("fonts/TradeGothicLTPro.otf") format("opentype"),
+       url("fonts/3-font.woff") format("woff");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+
+:root {
+  /* ====================================================
+     BRAND GRADIENT — PRIMARY VISUAL IDENTITY
+     The core AnswerRocket signature. Use it liberally.
+     ==================================================== */
+  --gradient-brand:          linear-gradient(90deg, #ff663a 10%, #000099 90%);
+  --gradient-brand-diagonal: linear-gradient(to right top, #ff663a 10%, #000099 90%);
+  --gradient-brand-radial:   radial-gradient(circle at bottom left, #ff663a 5%, #000099 40%);
+  --gradient-brand-extended: linear-gradient(90deg, #ff663a 0%, #7f3399 50%, #000099 100%);
+  --gradient-brand-animated: linear-gradient(60deg, #000099, #ff663a, #000099);
+
+  /* ====================================================
+     CORE BRAND COLORS
+     Navy is the dominant solid color; orange + purple
+     appear almost exclusively *within* gradients.
+     ==================================================== */
+  --ar-navy:          #000099;   /* primary brand solid */
+  --ar-orange:        #ff663a;   /* gradient component */
+  --ar-purple:        #7f3399;   /* gradient bridge */
+
+  /* Navy shades (solid applications) */
+  --ar-navy-dark:     #191980;
+  --ar-navy-darkest:  #0d0d40;
+  --ar-navy-shade:    #000068;
+
+  /* Supporting accent blues (data-viz only — NOT brand) */
+  --ar-blue:          #3266ff;
+  --ar-blue-light:    #70adff;
+  --ar-blue-medium:   #285cf5;
+
+  /* Tints — light diagram/background fills */
+  --ar-tint-primary:   #ddbefe;   /* light purple-blue */
+  --ar-tint-secondary: #e5d6eb;   /* light purple */
+  --ar-tint-accent:    #ffe0d8;   /* coral / peach */
+  --ar-tint-neutral:   #ddebfe;   /* very light blue */
+  --ar-tint-lavender:  #f9f6fe;   /* platform-box bg */
+
+  /* ====================================================
+     NEUTRALS
+     ==================================================== */
+  --ar-bg:            #F9F9F9;   /* page background */
+  --ar-surface:       #ffffff;
+  --ar-ink:           #111827;   /* text-primary (titles) */
+  --ar-ink-2:         #565658;   /* text-secondary (body) */
+  --ar-ink-3:         #595959;   /* gray (web) */
+  --ar-ink-4:         #67768e;   /* medium gray (web) */
+  --ar-ink-5:         #4B5563;   /* label / eyebrow */
+  --ar-border:        #E5E7EB;
+  --ar-border-soft:   #dbdde1;   /* nav borders */
+
+  /* ====================================================
+     SEMANTIC
+     ==================================================== */
+  --ar-positive:      #006b6b;
+  --ar-positive-tint: #cce1e1;
+  --ar-negative:      #990000;
+  --ar-negative-tint: #ebcccc;
+
+  /* ====================================================
+     SEMANTIC ROLE ALIASES (fg1/fg2/bg1, etc)
+     ==================================================== */
+  --fg1:  var(--ar-ink);
+  --fg2:  var(--ar-ink-2);
+  --fg3:  var(--ar-ink-4);
+  --bg1:  var(--ar-surface);
+  --bg2:  var(--ar-bg);
+  --bg3:  var(--ar-tint-lavender);
+  --accent: var(--ar-navy);
+
+  /* ====================================================
+     TYPOGRAPHY — FONT STACKS
+     ----------------------------------------------------
+     Fallback order for web surfaces:
+       Neue Alte Grotesk  →  Hanken Grotesk  →  system
+       Trade Gothic LT Pro →  News Cycle     →  system
+     The Google Fonts substitutes (Hanken Grotesk, News Cycle)
+     are imported at the top of this file, so the cascade is
+     real — if the licensed files are absent, the page renders
+     in the approved substitutes automatically.
+     ==================================================== */
+
+  /* Web brand — licensed files loaded via @font-face above, Google Fonts as fallbacks */
+  --font-display:  "Neue Alte Grotesk", "Hanken Grotesk", "Neue Haas Grotesk", Arial, sans-serif;
+  --font-body:     "Trade Gothic LT Pro", "News Cycle", "Trade Gothic", Arial, sans-serif;
+
+  /* Slides brand — Hanken Grotesk + News Cycle are the primary faces here */
+  --font-slide-heading: "Hanken Grotesk", "Neue Haas Grotesk", sans-serif;
+  --font-slide-body:    "News Cycle", "News Gothic MT", sans-serif;
+
+  /* Mono (no brand spec; sensible default) */
+  --font-mono:     ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  /* ====================================================
+     TYPE SCALE — Web sizes (per ar-web-css)
+     ==================================================== */
+  --fs-h1:         52px;   /* h1 */
+  --fs-h2:         42px;   /* h2 */
+  --fs-h3:         36px;   /* h3 */
+  --fs-h4:         20px;   /* h4 / menu heading */
+  --fs-featured:   28px;   /* featured-title (1.75em of 16) */
+  --fs-lead:       18px;   /* mega-menu p */
+  --fs-body:       16px;   /* p */
+  --fs-sm:         14px;   /* footer */
+  --fs-eyebrow:    14px;   /* uagb-ifb-title-prefix */
+  --fs-xs:         12px;
+
+  /* Slide sizes (per slide design system)
+     -----------------------------------------------------
+     --fs-slide-body is the DEFAULT body size on slides.
+     Use the *-max and *-min bounds to scale up or down based
+     on content density on a given slide:
+       • Short pull-quote or key finding → bump toward -max
+       • Lots of legal / disclaimer copy → drop toward -min
+     Never go below the min (tiny copy becomes unreadable).
+     Never exceed the max on slides (bigger than this reads
+     as a title, not body).
+  */
+  --fs-slide-title:    28px;
+  --fs-slide-subtitle: 14px;
+  --fs-slide-body-min:  9px;   /* floor — dense legal / disclaimer */
+  --fs-slide-body:     12px;   /* default body on slides */
+  --fs-slide-body-max: 14px;   /* ceiling — long-form body on a sparse slide */
+  --fs-slide-bullet:   10px;
+
+  /* Line heights */
+  --lh-tight:  1.1;
+  --lh-snug:   1.2;
+  --lh-normal: 1.4;
+  --lh-body:   1.6;
+
+  /* Letter spacing */
+  --ls-eyebrow: 0.14em;   /* 2px on 14px */
+  --ls-tight:   -0.01em;
+
+  /* ====================================================
+     SPACING — Web padding scale
+     ==================================================== */
+  --space-xs:   4px;
+  --space-sm:   10px;
+  --space-md:   20px;
+  --space-lg:   50px;
+  --space-xl:   100px;
+
+  /* ====================================================
+     RADII — note brand uses very round pill-like shapes
+     ==================================================== */
+  --radius-sm:   8px;
+  --radius-md:   16px;    /* 1em */
+  --radius-lg:   32px;    /* 2em */
+  --radius-xl:   40px;    /* gradient-box, nav */
+  --radius-pill: 9999px;
+
+  /* Card thumbnails use 20px rounded corners */
+  --radius-card-thumb: 20px;
+
+  /* ====================================================
+     SHADOWS — signature brand "offset shadow"
+     Colored flat shadow in brand colors is the hallmark.
+     ==================================================== */
+  --shadow-offset-navy:   4px 4px 0 0 #000099;
+  --shadow-offset-orange: 4px 4px 0 0 #ff663a;
+  --shadow-offset-purple: 4px 4px 0 0 #7f3399;
+  --shadow-soft:          0 2px 8px rgba(0,0,0,0.08);
+  --shadow-card:          0 6px 24px rgba(17,24,39,0.08);
+
+  /* ====================================================
+     BORDERS
+     ==================================================== */
+  --border-hairline: 1px solid var(--ar-border);
+  --border-soft:     1px solid var(--ar-border-soft);
+
+  /* ====================================================
+     WIDTHS
+     ==================================================== */
+  --w-narrow:    670px;
+  --w-normal:    980px;
+  --w-wide:      1260px;
+  --w-xwide:     1600px;
+
+  /* ====================================================
+     MOTION
+     ==================================================== */
+  --ease-out:    cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast:    160ms;
+  --dur-base:    240ms;
+  --dur-slow:    420ms;
+}
+
+/* ============================================================
+   SEMANTIC TYPE STYLES
+   Apply to raw elements; these are the defaults a designer
+   can rely on without composing individual vars.
+   ============================================================ */
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--ar-ink);
+  background: var(--ar-bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  color: var(--ar-ink);
+  font-weight: 500;
+  line-height: var(--lh-snug);
+  margin: 0 0 0.5em;
+}
+
+h1 { font-size: var(--fs-h1); }
+h2 { font-size: var(--fs-h2); }
+h3 { font-size: var(--fs-h3); }
+h4 { font-size: var(--fs-h4); font-weight: 500; }
+h5 { font-size: 18px; }
+h6 { font-size: 16px; }
+
+p { font-size: var(--fs-body); color: var(--ar-ink); line-height: var(--lh-body); margin: 0 0 1em; }
+small { font-size: var(--fs-sm); color: var(--ar-ink-2); }
+code, pre { font-family: var(--font-mono); font-size: 14px; }
+
+a { color: var(--ar-navy); text-decoration: none; transition: color var(--dur-fast) var(--ease-out); }
+a:hover { color: var(--ar-orange); }
+
+/* Eyebrow / small label above headings.
+   Rule (2026 refresh): sentence case, default tracking — no forced uppercase or letter-spacing.
+   Any prior design that relied on this rule to uppercase text must now supply its own casing. */
+.eyebrow {
+  font-family: var(--font-display);
+  font-size: var(--fs-eyebrow);
+  color: var(--ar-ink-5);
+  margin-bottom: 16px;
+}
+
+.eyebrow--dot {
+  position: relative;
+  padding-left: 24px;
+}
+.eyebrow--dot::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 50%;
+  transform: translateY(-50%);
+  width: 16px; height: 16px;
+  background: var(--ar-navy);
+  border-radius: 50%;
+}
+
+/* Gradient text — the brand's signature text treatment */
+.gradient-text {
+  background: var(--gradient-brand-diagonal);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
+}
+
+/* Featured (sub-hero) title — used under h1 */
+.featured-title {
+  font-family: var(--font-display);
+  font-size: var(--fs-featured);
+  color: var(--ar-ink);
+  line-height: var(--lh-snug);
+  margin: 12px auto 24px;
+}
