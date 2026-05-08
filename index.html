@@ -701,12 +701,118 @@
     .bg-toggle { display: none; }
   }
 
-  /* ---------- Slate theme ---------- */
+  /* ---------- Slate theme (glass + tint) ---------- */
   html[data-theme="slate"] {
     --ar-bg: #2b303b;
     --rule: 1px solid rgba(255, 255, 255, 0.10);
   }
-  html[data-theme="slate"] .bg-smoke { display: none; }
+  /* keep smoke ON so backdrop-filter has something to refract; bump opacity for dark bg */
+  html[data-theme="slate"] .bg-smoke { opacity: 0.85; filter: blur(110px); }
+  html[data-theme="slate"] .bg-smoke--a {
+    background:
+      radial-gradient(ellipse 38% 28% at 22% 32%, rgba(178, 30, 138, 0.45), transparent 60%),
+      radial-gradient(ellipse 32% 22% at 78% 18%, rgba(127, 51, 153, 0.40), transparent 65%),
+      radial-gradient(ellipse 28% 36% at 60% 78%, rgba(50, 102, 255, 0.30), transparent 60%);
+  }
+  html[data-theme="slate"] .bg-smoke--b {
+    background:
+      radial-gradient(ellipse 30% 24% at 70% 40%, rgba(255, 102, 58, 0.25), transparent 60%),
+      radial-gradient(ellipse 26% 32% at 30% 72%, rgba(127, 51, 153, 0.35), transparent 60%);
+  }
+
+  /* glass step cards */
+  html[data-theme="slate"] .step {
+    background: rgba(43, 48, 59, 0.50);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(22px) saturate(160%);
+    -webkit-backdrop-filter: blur(22px) saturate(160%);
+    box-shadow:
+      4px 4px 0 0 var(--offset-color),
+      0 14px 36px rgba(0, 0, 0, 0.40),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  }
+  html[data-theme="slate"] .step:hover {
+    box-shadow:
+      6px 6px 0 0 var(--offset-color),
+      0 20px 48px rgba(0, 0, 0, 0.50),
+      inset 0 1px 0 rgba(255, 255, 255, 0.10);
+  }
+  html[data-theme="slate"] .step__num,
+  html[data-theme="slate"] .step__title { color: #f3f4f6; }
+  html[data-theme="slate"] .step__desc { color: #c8ccd6; }
+
+  /* glass tag chips */
+  html[data-theme="slate"] .tag {
+    background: rgba(255, 255, 255, 0.08);
+    color: #c8ccd6;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+  html[data-theme="slate"] .tag--cert {
+    background: rgba(127, 51, 153, 0.30);
+    color: #e0d0ff;
+  }
+  html[data-theme="slate"] .tag--video {
+    background: rgba(255, 102, 58, 0.22);
+    color: #ffc4b3;
+  }
+  html[data-theme="slate"] .tag--account {
+    background: rgba(122, 140, 255, 0.22);
+    color: #c8d0ff;
+  }
+  html[data-theme="slate"] .tag--optional {
+    background: rgba(255, 176, 40, 0.22);
+    color: #ffe0a3;
+  }
+  html[data-theme="slate"] .tag--time { color: #a0a4ad; }
+
+  /* glass hint box */
+  html[data-theme="slate"] .step__hint {
+    background: rgba(255, 154, 80, 0.10);
+    border: 1px solid rgba(255, 154, 80, 0.28);
+    border-left: 3px solid #ff9a50;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: #ffd1a8;
+  }
+  html[data-theme="slate"] .step__hint strong { color: #fff1de; }
+
+  /* glass CTAs */
+  html[data-theme="slate"] .step__cta {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.30);
+    color: #f3f4f6;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+  html[data-theme="slate"] .step__cta:hover {
+    background: #f3f4f6;
+    color: #1a1ad1;
+    border-color: #f3f4f6;
+  }
+  html[data-theme="slate"] .step__cta--ghost {
+    border-color: rgba(255, 255, 255, 0.14);
+    color: #a0a4ad;
+  }
+  html[data-theme="slate"] .step__cta--ghost:hover {
+    background: transparent;
+    color: #a0a4ad;
+    border-color: rgba(255, 255, 255, 0.14);
+  }
+
+  /* glass substep */
+  html[data-theme="slate"] .substep {
+    background: rgba(43, 48, 59, 0.45);
+    border: 1px dashed rgba(255, 255, 255, 0.22);
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    box-shadow:
+      0 8px 24px rgba(0, 0, 0, 0.30),
+      inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  }
+  html[data-theme="slate"] .substep::before { background: rgba(255, 255, 255, 0.22); }
+  html[data-theme="slate"] .substep__title { color: #f3f4f6; }
+  html[data-theme="slate"] .substep__desc { color: #c8ccd6; }
 
   /* recolor free-standing text for slate bg */
   html[data-theme="slate"] .topbar__brand,
