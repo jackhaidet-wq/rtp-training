@@ -10,6 +10,15 @@
     try {
       var t = localStorage.getItem('rtp-theme');
       if (t === 'slate') document.documentElement.setAttribute('data-theme', 'slate');
+      var f = localStorage.getItem('rtp-font');
+      if (f === 'dyslexic') {
+        document.documentElement.setAttribute('data-font', 'dyslexic');
+        var l = document.createElement('link');
+        l.id = 'open-dyslexic-css';
+        l.rel = 'stylesheet';
+        l.href = 'https://cdn.jsdelivr.net/npm/@fontsource/opendyslexic/400.css';
+        document.head.appendChild(l);
+      }
     } catch (e) {}
   })();
 </script>
@@ -667,8 +676,8 @@
   .foot a { color: var(--ar-navy); text-decoration: none; }
   .foot a:hover { color: var(--ar-orange); }
 
-  /* ---------- Background toggle ---------- */
-  .bg-toggle {
+  /* ---------- Pill toggles (background + font) ---------- */
+  .pill-toggle {
     display: inline-flex;
     align-items: center;
     padding: 3px;
@@ -677,7 +686,7 @@
     border: 1px solid rgba(0, 0, 0, 0.06);
     gap: 0;
   }
-  .bg-toggle__btn {
+  .pill-toggle__btn {
     appearance: none;
     border: 0;
     background: transparent;
@@ -691,14 +700,14 @@
     cursor: pointer;
     transition: background var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out);
   }
-  .bg-toggle__btn:hover { color: var(--ar-ink); }
-  .bg-toggle__btn.is-active {
+  .pill-toggle__btn:hover { color: var(--ar-ink); }
+  .pill-toggle__btn.is-active {
     background: #fff;
     color: var(--ar-ink);
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
   }
   @media (max-width: 760px) {
-    .bg-toggle { display: none; }
+    .pill-toggle { display: none; }
   }
 
   /* ---------- Slate theme (glass + tint) ---------- */
@@ -853,17 +862,25 @@
   html[data-theme="slate"] .phase__num { filter: none; }
 
   /* toggle button surface tweaks */
-  html[data-theme="slate"] .bg-toggle {
+  html[data-theme="slate"] .pill-toggle {
     background: rgba(255, 255, 255, 0.06);
     border-color: rgba(255, 255, 255, 0.12);
   }
-  html[data-theme="slate"] .bg-toggle__btn { color: #c8ccd6; }
-  html[data-theme="slate"] .bg-toggle__btn:hover { color: #fff; }
-  html[data-theme="slate"] .bg-toggle__btn.is-active {
+  html[data-theme="slate"] .pill-toggle__btn { color: #c8ccd6; }
+  html[data-theme="slate"] .pill-toggle__btn:hover { color: #fff; }
+  html[data-theme="slate"] .pill-toggle__btn.is-active {
     background: #4a4f5d;
     color: #fff;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
   }
+
+  /* ---------- Font theme: OpenDyslexic ---------- */
+  html[data-font="dyslexic"] {
+    --font-display: "OpenDyslexic", "Comic Sans MS", "Trebuchet MS", sans-serif;
+    --font-body: "OpenDyslexic", "Comic Sans MS", "Trebuchet MS", sans-serif;
+  }
+  /* OpenDyslexic glyphs are wider — relax letter spacing on the gradient title */
+  html[data-font="dyslexic"] .hero__title { letter-spacing: -0.01em; }
 
   /* ---------- Print ---------- */
   @media print {
@@ -890,9 +907,13 @@
     <div class="topbar__meta">
       <span><strong>11</strong>&nbsp;steps</span>
       <span>Updated&nbsp;<strong>May&nbsp;2026</strong></span>
-      <div class="bg-toggle" role="radiogroup" aria-label="Background style">
-        <button type="button" class="bg-toggle__btn" data-theme="smoke" role="radio" aria-checked="true">Smoke</button>
-        <button type="button" class="bg-toggle__btn" data-theme="slate" role="radio" aria-checked="false">Slate</button>
+      <div class="pill-toggle" data-pill="bg" role="radiogroup" aria-label="Background style">
+        <button type="button" class="pill-toggle__btn" data-value="smoke" role="radio" aria-checked="true">Smoke</button>
+        <button type="button" class="pill-toggle__btn" data-value="slate" role="radio" aria-checked="false">Slate</button>
+      </div>
+      <div class="pill-toggle" data-pill="font" role="radiogroup" aria-label="Font style">
+        <button type="button" class="pill-toggle__btn" data-value="native" role="radio" aria-checked="true">Native</button>
+        <button type="button" class="pill-toggle__btn" data-value="dyslexic" role="radio" aria-checked="false">Dyslexic</button>
       </div>
     </div>
   </header>
@@ -1291,23 +1312,62 @@
   })();
 
   (function () {
-    var current = document.documentElement.getAttribute('data-theme') === 'slate' ? 'slate' : 'smoke';
-    var btns = document.querySelectorAll('.bg-toggle__btn');
-    function paint(theme) {
-      btns.forEach(function (b) {
-        var on = b.dataset.theme === theme;
-        b.classList.toggle('is-active', on);
-        b.setAttribute('aria-checked', on ? 'true' : 'false');
-      });
+    function ensureDyslexicFont() {
+      if (document.getElementById('open-dyslexic-css')) return;
+      var l = document.createElement('link');
+      l.id = 'open-dyslexic-css';
+      l.rel = 'stylesheet';
+      l.href = 'https://cdn.jsdelivr.net/npm/@fontsource/opendyslexic/400.css';
+      document.head.appendChild(l);
     }
-    paint(current);
-    btns.forEach(function (b) {
-      b.addEventListener('click', function () {
-        var t = b.dataset.theme;
-        if (t === 'slate') document.documentElement.setAttribute('data-theme', 'slate');
-        else document.documentElement.removeAttribute('data-theme');
-        try { localStorage.setItem('rtp-theme', t); } catch (e) {}
-        paint(t);
+    var configs = {
+      bg: {
+        defaultValue: 'smoke',
+        storageKey: 'rtp-theme',
+        readCurrent: function () {
+          return document.documentElement.getAttribute('data-theme') === 'slate' ? 'slate' : 'smoke';
+        },
+        apply: function (v) {
+          if (v === 'slate') document.documentElement.setAttribute('data-theme', 'slate');
+          else document.documentElement.removeAttribute('data-theme');
+        },
+      },
+      font: {
+        defaultValue: 'native',
+        storageKey: 'rtp-font',
+        readCurrent: function () {
+          return document.documentElement.getAttribute('data-font') === 'dyslexic' ? 'dyslexic' : 'native';
+        },
+        apply: function (v) {
+          if (v === 'dyslexic') {
+            ensureDyslexicFont();
+            document.documentElement.setAttribute('data-font', 'dyslexic');
+          } else {
+            document.documentElement.removeAttribute('data-font');
+          }
+        },
+      },
+    };
+    document.querySelectorAll('.pill-toggle').forEach(function (group) {
+      var key = group.dataset.pill;
+      var cfg = configs[key];
+      if (!cfg) return;
+      var btns = group.querySelectorAll('.pill-toggle__btn');
+      function paint(value) {
+        btns.forEach(function (b) {
+          var on = b.dataset.value === value;
+          b.classList.toggle('is-active', on);
+          b.setAttribute('aria-checked', on ? 'true' : 'false');
+        });
+      }
+      paint(cfg.readCurrent());
+      btns.forEach(function (b) {
+        b.addEventListener('click', function () {
+          var v = b.dataset.value;
+          cfg.apply(v);
+          try { localStorage.setItem(cfg.storageKey, v); } catch (e) {}
+          paint(v);
+        });
       });
     });
   })();
