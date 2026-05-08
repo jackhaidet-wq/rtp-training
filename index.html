@@ -261,14 +261,17 @@
   .step {
     --offset-color: var(--ar-navy);
     background: #fff;
-    border: 1px solid #ebebef;
+    border: 1px solid #dcdce2;
     border-radius: 18px;
     padding: 26px 28px 26px 28px;
     display: grid;
     grid-template-columns: 56px 1fr auto;
     gap: 24px;
     align-items: flex-start;
-    box-shadow: 4px 4px 0 0 var(--offset-color);
+    box-shadow:
+      4px 4px 0 0 var(--offset-color),
+      0 10px 28px rgba(17, 24, 39, 0.10),
+      0 2px 6px rgba(17, 24, 39, 0.06);
     transition:
       transform var(--dur-base) var(--ease-out),
       box-shadow var(--dur-base) var(--ease-out),
@@ -277,7 +280,10 @@
   }
   .step:hover {
     transform: translate(-2px, -2px);
-    box-shadow: 6px 6px 0 0 var(--offset-color);
+    box-shadow:
+      6px 6px 0 0 var(--offset-color),
+      0 14px 36px rgba(17, 24, 39, 0.12),
+      0 2px 6px rgba(17, 24, 39, 0.06);
   }
   .step:nth-of-type(2n) { --offset-color: var(--ar-orange); }
   .step:nth-of-type(3n) { --offset-color: var(--ar-purple); }
@@ -435,13 +441,13 @@
     margin-left: 200px;
     margin-top: -6px;
     background: #fff;
-    border: 1px dashed #cfd0d8;
+    border: 1px dashed #b8b8c4;
     border-radius: 14px;
     padding: 18px 22px;
     display: flex;
     align-items: center;
     gap: 18px;
-    box-shadow: none;
+    box-shadow: 0 6px 18px rgba(17, 24, 39, 0.06), 0 1px 3px rgba(17, 24, 39, 0.04);
     position: relative;
   }
   .substep::before {
@@ -492,7 +498,10 @@
       #000099;
     position: relative;
     overflow: hidden;
-    box-shadow: 8px 8px 0 0 var(--ar-orange);
+    box-shadow:
+      8px 8px 0 0 var(--ar-orange),
+      0 24px 60px rgba(0, 0, 80, 0.28),
+      0 6px 16px rgba(0, 0, 80, 0.16);
   }
   .submit::after {
     content: "";
