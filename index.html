@@ -5,6 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>RTP Training Course · Claude Onboarding</title>
 <link rel="stylesheet" href="colors_and_type.css" />
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('rtp-theme');
+      if (t === 'slate') document.documentElement.setAttribute('data-theme', 'slate');
+    } catch (e) {}
+  })();
+</script>
 <style>
   /* ============================================================
      RTP Training Course — overview page
@@ -659,6 +667,98 @@
   .foot a { color: var(--ar-navy); text-decoration: none; }
   .foot a:hover { color: var(--ar-orange); }
 
+  /* ---------- Background toggle ---------- */
+  .bg-toggle {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px;
+    border-radius: 999px;
+    background: rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    gap: 0;
+  }
+  .bg-toggle__btn {
+    appearance: none;
+    border: 0;
+    background: transparent;
+    font-family: var(--font-display);
+    font-size: 11px;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    color: var(--ar-ink-5);
+    padding: 6px 12px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out);
+  }
+  .bg-toggle__btn:hover { color: var(--ar-ink); }
+  .bg-toggle__btn.is-active {
+    background: #fff;
+    color: var(--ar-ink);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+  }
+  @media (max-width: 760px) {
+    .bg-toggle { display: none; }
+  }
+
+  /* ---------- Slate theme ---------- */
+  html[data-theme="slate"] {
+    --ar-bg: #2b303b;
+    --rule: 1px solid rgba(255, 255, 255, 0.10);
+  }
+  html[data-theme="slate"] .bg-smoke { display: none; }
+
+  /* recolor free-standing text for slate bg */
+  html[data-theme="slate"] .topbar__brand,
+  html[data-theme="slate"] .topbar__co,
+  html[data-theme="slate"] .topbar__meta strong,
+  html[data-theme="slate"] .hero__title,
+  html[data-theme="slate"] .hero__stat-value,
+  html[data-theme="slate"] .phase__title {
+    color: #f3f4f6;
+  }
+  html[data-theme="slate"] .topbar__meta,
+  html[data-theme="slate"] .hero__lede,
+  html[data-theme="slate"] .hero__stat-label,
+  html[data-theme="slate"] .phase__sub,
+  html[data-theme="slate"] .foot {
+    color: #c8ccd6;
+  }
+  html[data-theme="slate"] .hero__eyebrow,
+  html[data-theme="slate"] #hero-eyebrow-text { color: #b8a8e0; }
+  html[data-theme="slate"] .foot a { color: #a5b8ff; }
+  html[data-theme="slate"] .foot a:hover { color: var(--ar-orange); }
+  html[data-theme="slate"] .topbar__divider { background: rgba(255, 255, 255, 0.18); }
+
+  /* drop the bg-color halos — they were tuned to the light bg */
+  html[data-theme="slate"] .topbar,
+  html[data-theme="slate"] .topbar__brand,
+  html[data-theme="slate"] .topbar__co,
+  html[data-theme="slate"] .topbar__meta,
+  html[data-theme="slate"] .hero__eyebrow,
+  html[data-theme="slate"] .hero__lede,
+  html[data-theme="slate"] .hero__stat-label,
+  html[data-theme="slate"] .hero__stat-value,
+  html[data-theme="slate"] .phase__title,
+  html[data-theme="slate"] .phase__sub,
+  html[data-theme="slate"] .foot,
+  html[data-theme="slate"] .hero__title { text-shadow: none; }
+  html[data-theme="slate"] .hero__title em,
+  html[data-theme="slate"] .phase__num { filter: none; }
+
+  /* toggle button surface tweaks */
+  html[data-theme="slate"] .bg-toggle {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.12);
+  }
+  html[data-theme="slate"] .bg-toggle__btn { color: #c8ccd6; }
+  html[data-theme="slate"] .bg-toggle__btn:hover { color: #fff; }
+  html[data-theme="slate"] .bg-toggle__btn.is-active {
+    background: #4a4f5d;
+    color: #fff;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  }
+
   /* ---------- Print ---------- */
   @media print {
     body { background: #fff; }
@@ -684,6 +784,10 @@
     <div class="topbar__meta">
       <span><strong>11</strong>&nbsp;steps</span>
       <span>Updated&nbsp;<strong>May&nbsp;2026</strong></span>
+      <div class="bg-toggle" role="radiogroup" aria-label="Background style">
+        <button type="button" class="bg-toggle__btn" data-theme="smoke" role="radio" aria-checked="true">Smoke</button>
+        <button type="button" class="bg-toggle__btn" data-theme="slate" role="radio" aria-checked="false">Slate</button>
+      </div>
     </div>
   </header>
 
@@ -1078,6 +1182,28 @@
     if (name.length > 32) name = name.slice(0, 32);
     var el = document.getElementById('hero-eyebrow-text');
     if (el) el.textContent = 'Welcome aboard, ' + name + ' · Onboarding Track';
+  })();
+
+  (function () {
+    var current = document.documentElement.getAttribute('data-theme') === 'slate' ? 'slate' : 'smoke';
+    var btns = document.querySelectorAll('.bg-toggle__btn');
+    function paint(theme) {
+      btns.forEach(function (b) {
+        var on = b.dataset.theme === theme;
+        b.classList.toggle('is-active', on);
+        b.setAttribute('aria-checked', on ? 'true' : 'false');
+      });
+    }
+    paint(current);
+    btns.forEach(function (b) {
+      b.addEventListener('click', function () {
+        var t = b.dataset.theme;
+        if (t === 'slate') document.documentElement.setAttribute('data-theme', 'slate');
+        else document.documentElement.removeAttribute('data-theme');
+        try { localStorage.setItem('rtp-theme', t); } catch (e) {}
+        paint(t);
+      });
+    });
   })();
 </script>
 
