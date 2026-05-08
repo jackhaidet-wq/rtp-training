@@ -161,16 +161,25 @@
   }
   .hero__title em {
     font-style: normal;
-    background: linear-gradient(115deg, #ff4500 0%, #ff2e6e 25%, #b21e8a 45%, #7f3399 65%, #1a1ad1 85%, #7f3399 100%);
-    background-size: 280% 280%;
+    background: linear-gradient(90deg,
+      #ff4500 0%,
+      #ffd000 12%,
+      #ff2e6e 25%,
+      #b21e8a 38%,
+      #7f3399 50%,
+      #1a1ad1 62%,
+      #00d2ff 75%,
+      #7f3399 88%,
+      #ff4500 100%);
+    background-size: 600% 100%;
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    animation: claude-shimmer 14s ease-in-out infinite alternate;
+    animation: claude-shimmer 3s linear infinite;
   }
   @keyframes claude-shimmer {
-    0%   { background-position: 0% 0%; }
-    100% { background-position: 100% 100%; }
+    0%   { background-position: 0% 50%; }
+    100% { background-position: -300% 50%; }
   }
   @media (prefers-reduced-motion: reduce) {
     .hero__title em { animation: none; }
