@@ -19,6 +19,10 @@
         l.href = 'https://cdn.jsdelivr.net/npm/@fontsource/opendyslexic/400.css';
         document.head.appendChild(l);
       }
+      var z = parseFloat(localStorage.getItem('rtp-zoom') || '1');
+      if (!isNaN(z) && z >= 0.7 && z <= 1.6 && z !== 1) {
+        window.__rtpZoom = z;
+      }
     } catch (e) {}
   })();
 </script>
@@ -49,7 +53,7 @@
     background: var(--ar-bg);
     color: var(--ar-ink);
     font-family: var(--font-body);
-    font-size: 17px;
+    font-size: 18px;
     line-height: 1.6;
     overflow-x: hidden;
   }
@@ -212,10 +216,10 @@
   }
   .hero__lede {
     font-family: var(--font-body);
-    font-size: 20px;
+    font-size: 21px;
     line-height: 1.55;
     color: var(--ar-ink-2);
-    max-width: 720px;
+    max-width: 760px;
     margin: 0 0 32px;
   }
 
@@ -295,10 +299,10 @@
   }
   .phase__sub {
     font-family: var(--font-body);
-    font-size: 16px;
+    font-size: 17px;
     color: var(--ar-ink-2);
     margin: 0;
-    max-width: 620px;
+    max-width: 640px;
   }
   @media (max-width: 760px) {
     .phase { padding-top: 40px; }
@@ -456,7 +460,7 @@
   .step__title {
     font-family: var(--font-display);
     font-weight: 500;
-    font-size: 22px;
+    font-size: 23px;
     line-height: 1.25;
     letter-spacing: -0.01em;
     color: var(--ar-ink);
@@ -464,7 +468,7 @@
   }
   .step__desc {
     font-family: var(--font-body);
-    font-size: 15.5px;
+    font-size: 16.5px;
     line-height: 1.55;
     color: var(--ar-ink-2);
     margin: 0;
@@ -615,12 +619,12 @@
   .substep__title {
     font-family: var(--font-display);
     font-weight: 500;
-    font-size: 16px;
+    font-size: 17px;
     color: var(--ar-ink);
     margin: 0 0 2px;
   }
   .substep__desc {
-    font-size: 14.5px;
+    font-size: 15.5px;
     color: var(--ar-ink-2);
     margin: 0;
     line-height: 1.5;
@@ -804,12 +808,58 @@
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
   }
 
-  /* ---------- Flag preferences trigger + popover ---------- */
-  .flag-btn {
+  /* ---------- Utility bar (zoom + preferences flag) ---------- */
+  .utility-bar {
     position: fixed;
     top: 24px;
     right: 24px;
     z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .zoom-ctrl {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px) saturate(160%);
+    -webkit-backdrop-filter: blur(10px) saturate(160%);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.10), 0 1px 3px rgba(0, 0, 0, 0.06);
+  }
+  .zoom-btn {
+    appearance: none;
+    border: 0;
+    background: transparent;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1;
+    color: var(--ar-navy);
+    display: grid;
+    place-items: center;
+    padding: 0;
+    transition: background var(--dur-fast) var(--ease-out);
+  }
+  .zoom-btn:hover { background: rgba(0, 0, 0, 0.06); }
+  .zoom-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+  .zoom-readout {
+    font-family: var(--font-display);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--ar-ink-5);
+    min-width: 38px;
+    text-align: center;
+    user-select: none;
+  }
+
+  .flag-btn {
     width: 40px;
     height: 40px;
     border-radius: 50%;
@@ -822,6 +872,7 @@
     place-items: center;
     cursor: pointer;
     color: var(--ar-navy);
+    padding: 0;
     transition: transform var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out);
   }
   .flag-btn:hover {
@@ -880,13 +931,17 @@
     color: var(--ar-ink-5);
   }
 
-  /* slate-mode glass for the trigger + popover */
-  html[data-theme="slate"] .flag-btn {
+  /* slate-mode glass for utility bar + popover */
+  html[data-theme="slate"] .flag-btn,
+  html[data-theme="slate"] .zoom-ctrl {
     background: rgba(43, 48, 59, 0.70);
     border-color: rgba(255, 255, 255, 0.14);
     color: #f3f4f6;
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.40), inset 0 1px 0 rgba(255, 255, 255, 0.08);
   }
+  html[data-theme="slate"] .zoom-btn { color: #f3f4f6; }
+  html[data-theme="slate"] .zoom-btn:hover { background: rgba(255, 255, 255, 0.08); }
+  html[data-theme="slate"] .zoom-readout { color: #c8ccd6; }
   html[data-theme="slate"] .flag-btn[aria-expanded="true"] { color: var(--ar-orange); }
   html[data-theme="slate"] .prefs-panel {
     background: rgba(43, 48, 59, 0.78);
@@ -896,7 +951,10 @@
   html[data-theme="slate"] .prefs-row__label { color: #c8ccd6; }
 
   @media (max-width: 760px) {
-    .flag-btn { top: 16px; right: 16px; width: 36px; height: 36px; }
+    .utility-bar { top: 16px; right: 16px; gap: 6px; }
+    .flag-btn { width: 36px; height: 36px; }
+    .zoom-btn { width: 26px; height: 26px; font-size: 16px; }
+    .zoom-readout { display: none; }
     .prefs-panel { top: 60px; right: 16px; left: 16px; min-width: 0; }
   }
 
@@ -1085,12 +1143,19 @@
 <div class="bg-smoke bg-smoke--a" aria-hidden="true"></div>
 <div class="bg-smoke bg-smoke--b" aria-hidden="true"></div>
 
-<button id="flag-btn" class="flag-btn" type="button" aria-label="Preferences" aria-expanded="false" aria-controls="prefs-panel">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-    <path d="M5 21V3"/>
-    <path d="M5 4h13l-2.2 4 2.2 4H5"/>
-  </svg>
-</button>
+<div class="utility-bar" aria-label="Page utilities">
+  <div class="zoom-ctrl" role="group" aria-label="Zoom">
+    <button class="zoom-btn" type="button" data-zoom="out" aria-label="Zoom out">&minus;</button>
+    <span class="zoom-readout" id="zoom-readout" aria-live="polite">100%</span>
+    <button class="zoom-btn" type="button" data-zoom="in" aria-label="Zoom in">+</button>
+  </div>
+  <button id="flag-btn" class="flag-btn" type="button" aria-label="Preferences" aria-expanded="false" aria-controls="prefs-panel">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M5 21V3"/>
+      <path d="M5 4h13l-2.2 4 2.2 4H5"/>
+    </svg>
+  </button>
+</div>
 <div id="prefs-panel" class="prefs-panel" role="dialog" aria-label="Preferences">
   <div class="prefs-row">
     <span class="prefs-row__label">Background</span>
@@ -1514,6 +1579,40 @@
     if (name.length > 32) name = name.slice(0, 32);
     var el = document.getElementById('hero-eyebrow-text');
     if (el) el.textContent = 'Welcome aboard, ' + name + ' · Onboarding Track';
+  })();
+
+  (function () {
+    var MIN = 0.8, MAX = 1.5, STEP = 0.1;
+    var page = document.querySelector('main.page');
+    var readout = document.getElementById('zoom-readout');
+    var btnIn = document.querySelector('.zoom-btn[data-zoom="in"]');
+    var btnOut = document.querySelector('.zoom-btn[data-zoom="out"]');
+    if (!page || !readout || !btnIn || !btnOut) return;
+    var current = (typeof window.__rtpZoom === 'number') ? window.__rtpZoom : 1;
+    function apply(v) {
+      page.style.zoom = String(v);
+      readout.textContent = Math.round(v * 100) + '%';
+      btnIn.disabled = v >= MAX - 0.001;
+      btnOut.disabled = v <= MIN + 0.001;
+    }
+    function persist(v) {
+      try {
+        if (Math.abs(v - 1) < 0.001) localStorage.removeItem('rtp-zoom');
+        else localStorage.setItem('rtp-zoom', v.toFixed(2));
+      } catch (e) {}
+    }
+    apply(current);
+    [btnIn, btnOut].forEach(function (b) {
+      b.addEventListener('click', function () {
+        var dir = b.dataset.zoom;
+        var next = dir === 'in' ? current + STEP : current - STEP;
+        next = Math.max(MIN, Math.min(MAX, Math.round(next * 10) / 10));
+        if (next === current) return;
+        current = next;
+        apply(current);
+        persist(current);
+      });
+    });
   })();
 
   (function () {
