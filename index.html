@@ -1554,20 +1554,30 @@
     render(done);
 
     document.addEventListener('click', function (e) {
-      var btn = e.target.closest && e.target.closest('.step__check');
-      if (!btn) return;
-      var step = btn.closest('.step');
-      if (!step) return;
-      var n = parseInt(step.dataset.step, 10);
-      var state = step.dataset.state;
-      if (state === 'active') {
-        done = n;
-        write(done);
-        render(done);
-      } else if (state === 'done' && n === done) {
-        done = n - 1;
-        write(done);
-        render(done);
+      if (!e.target.closest) return;
+      var check = e.target.closest('.step__check');
+      if (check) {
+        var s = check.closest('.step');
+        if (!s) return;
+        var n = parseInt(s.dataset.step, 10);
+        var state = s.dataset.state;
+        if (state === 'active') {
+          done = n; write(done); render(done);
+        } else if (state === 'done' && n === done) {
+          done = n - 1; write(done); render(done);
+        }
+        return;
+      }
+      var cta = e.target.closest('.step__cta');
+      if (cta) {
+        var step = cta.closest('.step');
+        if (!step) return;
+        if (step.dataset.state === 'active') {
+          var num = parseInt(step.dataset.step, 10);
+          done = num;
+          write(done);
+          render(done);
+        }
       }
     });
   })();
