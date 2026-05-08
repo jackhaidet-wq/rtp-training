@@ -1,0 +1,7 @@
+{
+  "name": "rtp-training",
+  "private": true,
+  "dependencies": {
+    "@vercel/edge": "^1.2.1"
+  }
+}

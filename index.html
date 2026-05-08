@@ -689,7 +689,7 @@
 
   <!-- Hero -->
   <section class="hero">
-    <div class="hero__eyebrow">Onboarding Track · Get started with Claude</div>
+    <div class="hero__eyebrow"><span id="hero-eyebrow-text">Onboarding Track · Get started with Claude</span></div>
     <h1 class="hero__title">
       Get started, fast,<br/>with <em>Claude</em>.
     </h1>
@@ -1064,6 +1064,22 @@
   </footer>
 
 </main>
+
+<script>
+  (function () {
+    var m = document.cookie.match(/(?:^|; )rtp-user=([^;]+)/);
+    if (!m) return;
+    var raw;
+    try { raw = decodeURIComponent(m[1]); } catch (e) { return; }
+    if (!raw) return;
+    var first = raw.split(/[^\p{L}\p{M}'\- ]/u)[0].trim();
+    if (!first) return;
+    var name = first.charAt(0).toUpperCase() + first.slice(1);
+    if (name.length > 32) name = name.slice(0, 32);
+    var el = document.getElementById('hero-eyebrow-text');
+    if (el) el.textContent = 'Welcome aboard, ' + name + ' · Onboarding Track';
+  })();
+</script>
 
 </body>
 </html>
